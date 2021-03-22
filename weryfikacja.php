@@ -8,6 +8,7 @@ $verificationupdate = $conn->query($sqlweryfikacja);
 if($verificationupdate){
   session_start();
   $_SESSION['messege'] = "zweryfikowano pomyślnie , już możesz się zalogować ";
+  echo"jestgit";
   header('location:index.php');
   exit();
 }
