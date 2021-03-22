@@ -1,4 +1,15 @@
 <?php
+session_start();
+// require_once('rejestracja.php');
+if(isset($_SESSION['error'])){
+  echo $_SESSION['error'];
+  unset($_SESSION['error']);
+}elseif(isset($_SESSION['messege'])){
+  echo $_SESSION['messege'];
+  unset($_SESSION['messege']);
+}
+
+
 ?>
 <!doctype html>
 
@@ -20,13 +31,23 @@
 <div class="section">
   <div class = "row">
 
-        <div class="col-sm-4">
-          <form action="weryfikacja.php" method="POST">
-          <input type='text' name='login'>
+        <!-- <div class="col-sm-4"> -->
+        <p>logowanie:</p>
+          <form action="logowanie.php" method="POST">
+          <input type='email' name='email'>
           <input type='password' name='haslo'>
           <input type='submit' >
           </form>
-        </div>
+          <p>rejestracja:</p>
+          <form action="rejestracja.php" method="POST">
+          <input type="text" name ='nick' placeholder="wpisz nick">
+          <input type='email' name='email' placeholder="wpisz email">
+          <input type="date" name="data_ur" placeholder="podaj datę urodzenia">
+          <input type='password' name='haslo' placeholder="wpisz hasło">
+          <input type='password' name='haslo_powtorz' placeholder="powtórz hasło">
+          <input type='submit' name="Submit" >
+          </form>
+        <!-- </div> -->
   </div>
 </div>
 
@@ -35,7 +56,7 @@
 
     
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js.js"></script>
 </body>

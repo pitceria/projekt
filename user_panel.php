@@ -1,4 +1,6 @@
 <?php
+session_start();
+var_dump($_SESSION);
 ?>
 
 <!doctype html>
@@ -16,7 +18,7 @@
 </head>
 
 <body>
-    <button>wyloguj</button>
+    <a href='wyloguj.php'>wyloguj</a>
 
 
   <script src="js/scripts.js"></script>

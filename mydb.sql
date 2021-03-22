@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 21 Mar 2021, 19:15
+-- Czas generowania: 22 Mar 2021, 17:03
 -- Wersja serwera: 10.4.14-MariaDB
 -- Wersja PHP: 7.4.10
 
@@ -274,10 +274,15 @@ CREATE TABLE `uzytkownicy` (
 
 INSERT INTO `uzytkownicy` (`iduzytkownicy`, `nick`, `data_urodzenia`, `verification_key`, `is_varified`, `is_active`, `email`, `haslo`) VALUES
 (1, 'asd', '2021-03-09', '', 1, 1, 'sda@asdqw.com', '1234qwertyu'),
-(2, 'qwe', '2021-03-05', '', 0, 1, 'adwq@oapsd,com', '123456789'),
 (3, 'user1', '2021-03-09', '', 0, 1, 'user1@email.com', 'user1.haslo'),
 (4, 'user2', '2021-04-01', '', 0, 1, 'user2@gmail.com', 'user2.haslo'),
-(5, 'user2', '2021-04-01', '', 1, 1, 'user2@gmail.com', 'user2.haslo');
+(5, 'user2', '2021-04-01', '', 1, 1, 'user2@gmail.com', 'user2.haslo'),
+(6, 'user12', '2021-03-12', 'bef1807a588cf10918f5deb085a86de0', 1, 1, '12@qwe.com', '6eea9b7ef19179a06954edd0f6c05ceb'),
+(7, 'user123', '2021-03-12', 'da62ea7c4c66055ee5b9202c4e8028ef', 0, 1, '12@qwe.com', '4705114d74bec73e64886fbab79ca320'),
+(8, 'asd', '2021-03-09', '', 1, 1, 'sda@asdqw.com', '1234qwertyu'),
+(9, 'user8', '2021-03-13', 'f9ed374a59d0bbfcefad73a2a9f0d4cd', 0, 1, 'qwertyuiop@qwertyuiop', '6eea9b7ef19179a06954edd0f6c05ceb'),
+(10, 'poiuytrewq', '2021-03-12', 'd746a3c015da823c530c160f161475a9', 1, 1, 'poiuytrewq@poiuytrewq', '6eea9b7ef19179a06954edd0f6c05ceb'),
+(11, 'testmail1', '2021-03-04', 'f275bb5f611aa33bc69ff604b0ec3562', 0, 1, 'bzz02901@lcdvd.com', '6eea9b7ef19179a06954edd0f6c05ceb');
 
 -- --------------------------------------------------------
 
@@ -290,6 +295,14 @@ CREATE TABLE `zamówienia` (
   `status_ukonczone` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Zrzut danych tabeli `zamówienia`
+--
+
+INSERT INTO `zamówienia` (`idzamówienia`, `status_ukonczone`) VALUES
+(2, 0),
+(3, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -300,6 +313,14 @@ CREATE TABLE `zamówienia_uzytkownikow` (
   `iduzytkownicy` int(11) NOT NULL,
   `idzamówienia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Zrzut danych tabeli `zamówienia_uzytkownikow`
+--
+
+INSERT INTO `zamówienia_uzytkownikow` (`iduzytkownicy`, `idzamówienia`) VALUES
+(3, 2),
+(4, 3);
 
 -- --------------------------------------------------------
 
@@ -316,6 +337,14 @@ CREATE TABLE `zawartosc_zamowien_pizza` (
   `godzina_przyjecia` time NOT NULL,
   `godzina_wydania` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Zrzut danych tabeli `zawartosc_zamowien_pizza`
+--
+
+INSERT INTO `zawartosc_zamowien_pizza` (`zamówienia_idzamówienia`, `pizza_idpizza`, `ilosc`, `dodatkowe informacje`, `data`, `godzina_przyjecia`, `godzina_wydania`) VALUES
+(3, 51, 9, '', '2021-03-03', '17:00:56', '00:00:00'),
+(3, 95, 3, 'potrójne salami ', '2021-03-02', '13:05:56', '00:00:00');
 
 --
 -- Indeksy dla zrzutów tabel
@@ -381,13 +410,13 @@ ALTER TABLE `pizza`
 -- AUTO_INCREMENT dla tabeli `uzytkownicy`
 --
 ALTER TABLE `uzytkownicy`
-  MODIFY `iduzytkownicy` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `iduzytkownicy` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT dla tabeli `zamówienia`
 --
 ALTER TABLE `zamówienia`
-  MODIFY `idzamówienia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idzamówienia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Ograniczenia dla zrzutów tabel
