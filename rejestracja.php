@@ -25,43 +25,7 @@
 
 
 
-    // if(preg_match($specchar,$password)){
-    //     if(preg_match($case,$password)){
-    //         if(preg_match($upcase,$password)){
-    //             // if(strlen($password)>8){
-                    
-    //             // }
-    //             // else {
-    //             //     $_SESSION['error'] = "twoje hasło jest zbyt krótkie   ";
-    //             //     header('location:index.php');
-    //             //     exit();
-    //             // }
-    //                 if(preg_match($lenght,$password)){
-
-    //                 }
-    //                 else {
-    //                     $_SESSION['error'] = "twoje hasło jest zbyt krótkie   ";
-    //                     header('location:index.php');
-    //                     exit();
-    //                 }
-    //         }
-    //         else {
-    //             $_SESSION['error'] = "w twoim haśle brakuje dużej litery   ";
-    //             header('location:index.php');
-    //             exit();
-    //         }
-    //     }
-    //     else {
-    //     $_SESSION['error'] = "w twoim haśle brakuje małej litery   ";
-    //     header('location:index.php');
-    //     exit();
-    //     }
-    // }
-    // else {
-    //     $_SESSION['error'] = "w twoim haśle nie ma znaku specjalnego  ";
-    //     header('location:index.php');
-    //     exit();
-    // }
+    
     
 
 
@@ -122,16 +86,7 @@ if(isset($_POST['Submit'])){
         $insert =$conn->query($sql);
         if($insert){
             echo "succes";
-            // require_once('sendmail.php');
-            //próba wysyłania maila z localhostu zakończyła się niepowodzeniem miejmy nadzieję że na serwerze będzie działać
-            // unset($_SESSION['error']);
-            // $to = $email;
-            // $subject = "email verification" ;
-            // $verification_messege = "hey there u wanna get verified <a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?verify=$kod_weryfikacyjny'>so let it begin </a>";
-            // $headers = "From: projektpitcernia@gmail.com \r \n";
-            // $headers .="MIME-Vaersion: 1.0 "."\r\n";
-            // $headers .="Content-type:text/html;charset=UTF-8"."\r\n";
-            // mail($to,$subject,$verification_messege,$headers);
+            
 
             $_SESSION['messege'] = "pomyślnie zarejestrowano proszę sprawdzić skrzynkę odbiorczą w celu weryfikacji konta  ";
             $_SESSION['email'] = $email;

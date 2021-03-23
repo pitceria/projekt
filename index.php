@@ -1,5 +1,6 @@
 <?php
 session_start();
+var_dump($_SESSION);
 
 if(isset($_SESSION['error'])){
   echo $_SESSION['error'];
@@ -8,7 +9,17 @@ if(isset($_SESSION['error'])){
   echo $_SESSION['messege'];
   unset($_SESSION['messege']);
 }
-
+unset($_SESSION['iduzytkownicy']);
+unset($_SESSION['nick']);
+unset($_SESSION['email']);
+unset($_SESSION['data_ur']);
+unset($_SESSION['isverified']);
+unset($_SESSION['haslo']);
+unset($_SESSION['varificode']);
+// session_destroy();
+// var_dump($_SESSION);
+// session_start();
+// var_dump($_SESSION);
 
 ?>
 <!doctype html>
