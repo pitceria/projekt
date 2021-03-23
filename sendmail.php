@@ -20,13 +20,13 @@ date_default_timezone_set('Europe/Warsaw');
 
 $mail = new PHPMailer(true);
 try {
- $mail->isSMTP(); // Używamy SMTP
- $mail->Host = 'smtp.gmail.com'; // Adres serwera SMTP
- $mail->SMTPAuth = true; // Autoryzacja (do) SMTP
- $mail->Username = "projektpitcernia@gmail.com"; // Nazwa użytkownika
- $mail->Password = "ZAQ!2wsx"; // Hasło
- $mail->SMTPSecure = 'tls'; // Typ szyfrowania (TLS/SSL)
- $mail->Port = 587; // Port
+ $mail->isSMTP();
+ $mail->Host = 'smtp.gmail.com';
+ $mail->SMTPAuth = true; 
+ $mail->Username = "projektpitcernia@gmail.com"; 
+ $mail->Password = "ZAQ!2wsx"; 
+ $mail->SMTPSecure = 'tls'; 
+ $mail->Port = 587; 
 
  $mail->CharSet = "UTF-8";
  $mail->setLanguage('pl', '/phpmailer/language');
@@ -35,19 +35,17 @@ try {
  $mail->addAddress($_SESSION['email'], 'przyszły zjadacz pizzy');
  $mail->addReplyTo($email, $imie);
 
- $mail->isHTML(true); // Format: HTML
+ $mail->isHTML(true); 
  $mail->Subject = $temat;
  $mail->Body = $tresc;
  $mail->AltBody = 'By wyświetlić wiadomość należy skorzystać z czytnika obsługującego wiadomości w formie HTML';
 
  $mail->send();
- // Gdy OK:
-//  header("Location: https://webinsider.pl/?email=1");
+
 header('location:index.php');
 
 } catch (Exception $e) {
- // Gdy błąd:
-//  header("Location: https://webinsider.pl/?email=0");
+
 echo 'źle';
 }
 

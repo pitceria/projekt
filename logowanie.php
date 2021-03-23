@@ -10,9 +10,23 @@ $row = $bufor->fetch_assoc();
 var_dump($row);
 var_dump($haslo);
 echo "<br/>";
-if($row){
-    if($row['is_varified']){
-        if($haslo == $row['haslo']){
+$checks = [
+    $row=>"taki email nie został zarejestrowany w naszej bazie danych proszę się zarejestrować ",
+    $row['is_varified']=>"nie jesteś zweryfikowany przesłaliśmy link weryfikujący na podany przez ciebie adres email w celu weryfikacji należy go kliknąć",
+    $haslo == $row['haslo'] =>"wprowadzone hasło nie jest prawidłowe ",
+
+]
+
+foreach ($checks as $key => $value) {
+    if($key){
+
+    }
+    else{
+        $_SESSION['error'] = $value;
+        header('location:index.php');
+        exit();
+        break;
+    }
                 echo "działa";
                 
                 $_SESSION['iduzytkownicy'] = $row['iduzytkownicy'];
@@ -24,25 +38,40 @@ if($row){
                 unset($_SESSION['error']);
                 header('location:user_panel.php');
                 exit();
-            }
-            else{
-                $_SESSION['error'] = "wprowadzone hasło nie jest prawidłowe ";
-                header('location:index.php');
-                exit();
-            }
-    }
-    else{
-        $_SESSION['error'] = "nie jesteś zweryfikowany przesłaliśmy link weryfikujący na podany przez ciebie adres email w celu weryfikacji należy go kliknąć";
-        header('location:index.php');
-        exit();
-    }
+}
+// if($row){
+//     if($row['is_varified']){
+//         if($haslo == $row['haslo']){
+//                 echo "działa";
+                
+//                 $_SESSION['iduzytkownicy'] = $row['iduzytkownicy'];
+//                 $_SESSION['nick'] = $row['nick'];
+//                 $_SESSION['email'] = $row['email'];
+//                 $_SESSION['data_ur'] = $row['data_urodzenia'];
+//                 $_SESSION['isverified'] = $row['is_varified'];
+//                 $_SESSION['haslo']= $row['haslo'];
+//                 unset($_SESSION['error']);
+//                 header('location:user_panel.php');
+//                 exit();
+//             }
+//             else{
+//                 $_SESSION['error'] = "wprowadzone hasło nie jest prawidłowe ";
+//                 header('location:index.php');
+//                 exit();
+//             }
+//     }
+//     else{
+//         $_SESSION['error'] = "nie jesteś zweryfikowany przesłaliśmy link weryfikujący na podany przez ciebie adres email w celu weryfikacji należy go kliknąć";
+//         header('location:index.php');
+//         exit();
+//     }
     
-}
-else{
-    $_SESSION['error'] = "taki email nie został zarejestrowany w naszej bazie danych proszę się zarejestrować ";
-    header('location:index.php');
-    exit();
-}
+// }
+// else{
+//     $_SESSION['error'] = "taki email nie został zarejestrowany w naszej bazie danych proszę się zarejestrować ";
+//     header('location:index.php');
+//     exit();
+// }
 var_dump($_SESSION);
 
 // header("location:user_panel.php")
