@@ -15,12 +15,12 @@ unset($_SESSION['email']);
 unset($_SESSION['data_ur']);
 unset($_SESSION['isverified']);
 unset($_SESSION['haslo']);
-unset($_SESSION['varificode']);
-// session_destroy();
-// var_dump($_SESSION);
-// session_start();
-// var_dump($_SESSION);
-
+unset($_SESSION['verificode']);
+unset($_SESSION['isloggedin']);
+unset($_SESSION['verificode']);
+unset($_SESSION['imie']);
+unset($_SESSION['nazwisko']);
+unset($_SESSION['adres']);
 ?>
 <!doctype html>
 
@@ -45,17 +45,20 @@ unset($_SESSION['varificode']);
         <!-- <div class="col-sm-4"> -->
         <p>logowanie:</p>
           <form action="logowanie.php" method="POST">
-          <input type='email' name='email'>
-          <input type='password' name='haslo'>
+          <input type='email' name='email'><br/>
+          <input type='password' name='haslo'><br/>
           <input type='submit' >
           </form>
           <p>rejestracja:</p>
           <form action="rejestracja.php" method="POST">
-          <input type="text" name ='nick' placeholder="wpisz nick">
-          <input type='email' name='email' placeholder="wpisz email">
-          <input type="date" name="data_ur" placeholder="podaj datę urodzenia">
-          <input type='password' name='haslo' placeholder="wpisz hasło">
-          <input type='password' name='haslo_powtorz' placeholder="powtórz hasło">
+          <input type="text" name ='nick' placeholder="wpisz nick"><br/>
+          <input type="text" name ='imie' placeholder="wpisz imie"><br/>
+          <input type="text" name ='nazwisko' placeholder="wpisz nazwisko"><br/>
+          <input type="date" name="data_ur" placeholder="podaj datę urodzenia"><br/>
+          <input type="text" name="adres" placeholder="podaj adres"><br/>
+          <input type='email' name='email' placeholder="wpisz email"><br/>
+          <input type='password' name='haslo' placeholder="wpisz hasło"><br/>
+          <input type='password' name='haslo_powtorz' placeholder="powtórz hasło"><br/>
           <input type='submit' name="Submit" >
           </form>
         <!-- </div> -->

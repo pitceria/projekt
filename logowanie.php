@@ -4,7 +4,7 @@ session_start();
 require_once('baza_danych.php');
 $email = $_POST['email'];
 $haslo = md5($_POST['haslo']);
-$sql="select iduzytkownicy,nick,data_urodzenia,is_varified,is_active,email,haslo from uzytkownicy where email like '".$email."'";
+$sql="select iduzytkownicy,nick,imie,nazwisko,adres,is_admin,data_urodzenia,is_verified,is_active,email,haslo from uzytkownicy where email like '".$email."'";
 $bufor =$conn->query($sql);
 $row = $bufor->fetch_assoc();
 
@@ -14,7 +14,7 @@ echo "<br/>";
 if(isset($row['email'])){
     $checks = [
         // $row=>"taki email nie został zarejestrowany w naszej bazie danych proszę się zarejestrować ",
-        $row['is_varified']=>"nie jesteś zweryfikowany przesłaliśmy link weryfikujący na podany przez ciebie adres email w celu weryfikacji należy go kliknąć",
+        $row['is_verified']=>"nie jesteś zweryfikowany przesłaliśmy link weryfikujący na podany przez ciebie adres email w celu weryfikacji należy go kliknąć w przypadku gdyby nie dotarł prosimy o kliknięcie w ten link w celu powtórnego wysłania <a><a/>",
         $haslo == $row['haslo'] =>"wprowadzone hasło nie jest prawidłowe ",
     
     ];
@@ -36,11 +36,17 @@ foreach ($checks as $key => $value) {
     }
                 $_SESSION['iduzytkownicy'] = $row['iduzytkownicy'];
                 $_SESSION['nick'] = $row['nick'];
+                $_SESSION['imie'] = $row['imie'];
+                $_SESSION['nazwisko'] = $row['nazwisko'];
+                $_SESSION['adres'] = $row['adres'];
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['data_ur'] = $row['data_urodzenia'];
-                $_SESSION['isverified'] = $row['is_varified'];
+                $_SESSION['isverified'] = $row['is_verified'];
                 $_SESSION['haslo']= $row['haslo'];
+                $_SESSION['isloggedin'] = true;
                 unset($_SESSION['error']);
+                unset($_SESSION['verificode']);
+                unset($_SESSION['haslo']);
                 header('location:user_panel.php');
                 exit();
   
