@@ -47,8 +47,20 @@ foreach ($checks as $key => $value) {
                 unset($_SESSION['error']);
                 unset($_SESSION['verificode']);
                 unset($_SESSION['haslo']);
-                header('location:user_panel.php');
-                exit();
+                var_dump($row);
+                if($row['is_admin']=='1'){
+                    echo "jestes admin";
+                    ?>
+                    <a href="user_panel.php">idz do panelu uzytkownika</a><br/>
+                    <a href="admin_panel.php">idz do panelu administratora</a>
+            <?php
+
+                }
+                else{
+                    header('location:user_panel.php');
+                    exit();
+                }
+                
   
 
 }else{
@@ -62,7 +74,7 @@ foreach ($checks as $key => $value) {
 
                 
  
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 // header("location:user_panel.php")
 // // albo jezeli to admin to  daj mu wybór gdzie chce iść 

@@ -1,32 +1,34 @@
 <?php
- function ispasswordok($password){
+//  function ispasswordok($password){
 
-    $specchar = '/[!@#$%^&*()_+{}]/';
-    $case = '/[a-z]/';
-    $upcase = '/[A-Z]/';
-    $nums =  '/[0-9]/';
-    $lenght = '/[a-zA-Z0-9ZAQ!2wsxZAQ!2wsx]{8,25}/';
-    $bledy = [
-        // $specchar=>"w twoim haśle nie ma znaku specjalnego ",
-        // $case=>"w twoim haśle brakuje małej litery ",
-        // $nums=>"w twoim haśle brakuje liczby",
-        // $upcase=>"w twoim haśle brakuje dużej litery ",
-        // $lenght=>"twoje hasło nie mieści się w odpowiedzniej długości (8,25)"
-    ];
-    foreach ($bledy as $key => $value) {
-        if(preg_match($key,$password)){
+//     $specchar = '/[!@#$%^&*()_+{}]/';
+//     $case = '/[a-z]/';
+//     $upcase = '/[A-Z]/';
+//     $nums =  '/[0-9]/';
+//     $lenght = '/[a-zA-Z0-9ZAQ!2wsxZAQ!2wsx]{8,25}/';
+//     $bledy = [
+//         // $specchar=>"w twoim haśle nie ma znaku specjalnego ",
+//         // $case=>"w twoim haśle brakuje małej litery ",
+//         // $nums=>"w twoim haśle brakuje liczby",
+//         // $upcase=>"w twoim haśle brakuje dużej litery ",
+//         // $lenght=>"twoje hasło nie mieści się w odpowiedzniej długości (8,25)"
+//     ];
+//     foreach ($bledy as $key => $value) {
+//         if(preg_match($key,$password)){
 
-        }
-        else {
-            $_SESSION['error'] = $value;
-            header('location:index.php');
-            exit();
-        }
-    }
+//         }
+//         else {
+//             $_SESSION['error'] = $value;
+//             header('location:index.php');
+//             exit();
+//         }
+//     }
 
 
-}
+// }
 
+
+// require 'walidacja.php';
 ?>
 
 <?php
@@ -42,35 +44,35 @@ if(isset($_POST['Submit'])){
     $data = $_POST['data_ur'];
     $haslo = $_POST['haslo'];
     $haslo2=$_POST['haslo_powtorz'];
-
+    
     require_once('baza_danych.php');
     $sql_mail = "select count(email) from uzytkownicy where email like '".$email."'";
     $mail_wynik = $conn->query($sql_mail);
     $sql_nick = "select count(nick) from uzytkownicy where nick like '".$nick."'";
     $nick_wynik = $conn->query($sql_nick);
     //nietestowane ale powinno działać 
-    $checks2 = [
-        // strlen($nick)<5 =>"twoja nazwa jest zbyt krótka ",
-        // strlen($imie)<3 =>"nie wpisano poprawnego  imienia",
-        // strlen($nazwisko)<3 =>"nie wpisano poprawnego  nazwiska",
-        // $data ==""=>"nie wybrano daty urodzenia",
-        // date_diff(date_create($data),date_create(date("Y-m-d")),true)->y<18 =>"jesteś za młody by samodzielnie zamawiać pizze wróć z rodzicem :)",
-        // strlen($adres)<5 =>"nie wybrano poprawnej daty urodzenia ",
-        // $haslo2 !=$haslo =>"hasła nie są identyczne",
-        // $mail_wynik->fetch_assoc()['count(email)']!=0 =>"taki adres email jest już zarejestrowany w naszy systemie spróbuj zresetować hasło",
-        // $nick_wynik->fetch_assoc()['count(nick)']!=0 =>"taki nickname jest już zajety prosze wybrać inny"
+    // $checks2 = [
+    //     // strlen($nick)<5 =>"twoja nazwa jest zbyt krótka ",
+    //     // strlen($imie)<3 =>"nie wpisano poprawnego  imienia",
+    //     // strlen($nazwisko)<3 =>"nie wpisano poprawnego  nazwiska",
+    //     // $data ==""=>"nie wybrano daty urodzenia",
+    //     // date_diff(date_create($data),date_create(date("Y-m-d")),true)->y<18 =>"jesteś za młody by samodzielnie zamawiać pizze wróć z rodzicem :)",
+    //     // strlen($adres)<5 =>"nie wybrano poprawnej daty urodzenia ",
+    //     // $haslo2 !=$haslo =>"hasła nie są identyczne",
+    //     // $mail_wynik->fetch_assoc()['count(email)']!=0 =>"taki adres email jest już zarejestrowany w naszy systemie spróbuj zresetować hasło",
+    //     // $nick_wynik->fetch_assoc()['count(nick)']!=0 =>"taki nickname jest już zajety prosze wybrać inny"
 
-    ];
-    foreach ($checks2 as $key => $value) {
-        if($key){
-        $_SESSION['error'] = $value;
-        header('location:index.php');
-        exit();
-        }
-        else{
-            continue;
-        }
-    }
+    // ];
+    // foreach ($checks2 as $key => $value) {
+    //     if($key){
+    //     $_SESSION['error'] = $value;
+    //     header('location:index.php');
+    //     exit();
+    //     }
+    //     else{
+    //         continue;
+    //     }
+    // }
 
 
     // if(strlen($nick)<5){
@@ -120,8 +122,10 @@ if(isset($_POST['Submit'])){
     //     exit();
     // }
     // else{
-        
-        ispasswordok($haslo);
+        require_once( 'walidacja.php');
+        // ispasswordok($haslo,'index.php');
+
+
         $nick = $conn->real_escape_string($nick);
         $imie =  $conn->real_escape_string($imie);
         $nazwisko =  $conn->real_escape_string($nazwisko);
@@ -129,8 +133,10 @@ if(isset($_POST['Submit'])){
         $email = $conn->real_escape_string($email);
         $data = $conn->real_escape_string($data);
         $haslo = $conn->real_escape_string($haslo);
+        sprawdz_zmiany('all','index.php');
         $haslo = md5($haslo);
-        // var_dump($data);
+        
+        var_dump($checks);
         $kod_weryfikacyjny = md5(time().$nick);//tu by wypadało zmienić na coś innego niz md5 
         $sql = "insert into uzytkownicy values(null,'$nick','$imie','$nazwisko','$data','$adres','$kod_weryfikacyjny',0,1,0,'$email','$haslo')";
         $insert =$conn->query($sql);
@@ -139,10 +145,12 @@ if(isset($_POST['Submit'])){
             $_SESSION['email'] = $email;
             $_SESSION['verificode'] = $kod_weryfikacyjny;          
             require_once('sendmail.php');
-            sendmail($email);
+            sendmail($email,"<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=$kod'>link do weryfikacji</a>");
             
             var_dump($_SESSION);
             // header('location:sendmail.php');
+            // exit();
+            header('location:index.php');
             exit();
         }
         else{

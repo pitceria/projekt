@@ -16,8 +16,8 @@
 </head>
 
 <body>
-    <button>wyloguj admina</button>
-
+    
+  <a href="wyloguj.php">wyloguj sie </a>
 
   <script src="js/scripts.js"></script>
 </body>

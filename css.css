@@ -1,1 +1,21 @@
-text do sprawdzenia branchy 
+body{
+    background-color:#121212;
+    color: #7e7e7e;
+    
+}
+input{
+    background-color: #363636 ;
+}
+button{
+    background-color: #42a2f0;
+}
+div{
+    margin: 0 ;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+
+
+

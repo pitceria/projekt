@@ -1,6 +1,6 @@
 <?php
  
-
+//zamiast query w rejestracjii 
 ?>
 
 <?php

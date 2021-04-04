@@ -21,6 +21,9 @@ unset($_SESSION['verificode']);
 unset($_SESSION['imie']);
 unset($_SESSION['nazwisko']);
 unset($_SESSION['adres']);
+unset($_SESSION['do_zmiany_maila']);
+unset($_SESSION['nowy_mail']);
+
 ?>
 <!doctype html>
 
@@ -39,14 +42,14 @@ unset($_SESSION['adres']);
 </head>
 
 <body>
-<div class="section">
-  <div class = "row">
+ <div class="section">
+  <!-- <div class = "row">  -->
 
         <!-- <div class="col-sm-4"> -->
         <p>logowanie:</p>
           <form action="logowanie.php" method="POST">
-          <input type='email' name='email'><br/>
-          <input type='password' name='haslo'><br/>
+          <input type='email' name='email' placeholder="wpisz email "><br/>
+          <input type='password' name='haslo' placeholder="wpisz haslo"><br/>
           <input type='submit' >
           </form>
           <p>rejestracja:</p>
@@ -63,7 +66,7 @@ unset($_SESSION['adres']);
           </form>
         <!-- </div> -->
   </div>
-</div>
+ <!-- </div>  -->
 
       
 

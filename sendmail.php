@@ -1,11 +1,13 @@
 <?php
+// session_start();
  use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     
     require 'phpmailer-master/src/Exception.php';
     require 'phpmailer-master/src/PHPMailer.php';
     require 'phpmailer-master/src/SMTP.php';
-function sendmail($do_kogo){
+    $kod = $_SESSION['verificode'];
+function sendmail($do_kogo,$co){
     // session_start();
     header('Content-type: text/html; charset=utf-8');
     
@@ -13,8 +15,9 @@ function sendmail($do_kogo){
     
     $imie ='imie';
     $email ='projektpitcernia@gmail.com';
-    $kod = $_SESSION['verificode'];
-    $link = "<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=$kod'>link do weryfikacji</a>";
+    // $kod = $_SESSION['verificode'];
+    // $link = "<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=$kod'>link do weryfikacji</a>";
+    $link = $co;
     $tresc = $link;
     $temat = 'rejestracja na stronie   nalepszej pizzeri w mieście';
     
@@ -47,7 +50,7 @@ function sendmail($do_kogo){
     // header('location:index.php');
     
     } catch (Exception $e) {
-    
+    $_SESSION['error'] = $e;
     echo 'źle';
     }
 }
