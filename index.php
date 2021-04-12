@@ -57,7 +57,7 @@ unset($_SESSION['koszyk']);
       <div class = "row"> 
 
     
-      <div class="divyprzyrejestracji col-12 col-sm-6 col-md-4  offset-md-2 offset-lg-3 ">
+      <div class="divyprzyrejestracji col-12 col-sm-12 col-md-5   offset-lg-1 ">
           <p>logowanie:</p>
           <form action="logowanie.php" method="POST">
             <input type='email' name='email' placeholder="wpisz email "><br />
@@ -66,7 +66,7 @@ unset($_SESSION['koszyk']);
             <input type='submit' name="btn" value="zapomiales hasla?">
           </form>
         </div>
-        <div class="divyprzyrejestracji col-12 col-sm-6 col-md-4  offset-md-1">
+        <div class="divyprzyrejestracji col-12 col-sm-12 col-md-5   offset-md-1">
           <p>rejestracja:</p>
           <form action="rejestracja.php" method="POST">
             <input type="text" name='nick' placeholder="wpisz nick"><br />
