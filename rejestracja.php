@@ -145,7 +145,7 @@ if(isset($_POST['Submit'])){
             $_SESSION['email'] = $email;
             $_SESSION['verificode'] = $kod_weryfikacyjny;          
             require_once('sendmail.php');
-            sendmail($email,"<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=$kod'>link do weryfikacji</a>");
+            sendmail($email,"<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=$kod_weryfikacyjny'>link do weryfikacji</a>");
             
             var_dump($_SESSION);
             // header('location:sendmail.php');

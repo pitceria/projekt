@@ -1,8 +1,15 @@
 <?php
-
-
 session_start();
 require_once('baza_danych.php');
+
+if(isset($_SESSION['error'])){
+  echo $_SESSION['error'];
+  unset($_SESSION['error']);
+}elseif(isset($_SESSION['messege'])){
+  echo $_SESSION['messege'];
+  unset($_SESSION['messege']);
+}
+
 
 
 
@@ -25,22 +32,58 @@ if(isset($_GET['cel'])){
 
 
   }
+  elseif($_GET['cel'] == "zmianahasla"){
+    $verifikey = $_GET['vkey']; 
+    $_SESSION['verifikey'] = $verifikey;
+    $_SESSION['cel'] ="zmianahasla2";
+    ?>
+   <form action="weryfikacja.php" method="POST">
+    <input type="password" name="haslo" placeholder="nowe haslo">
+    <input type="password" name="haslo2" placeholder="powtorz nowe haslo">
+    <input type="submit" value="zmien">
+    </form>
+    <?php
 
-  
 
+  }
+
+  elseif($_SESSION['cel'] == "zmianahasla2"){
+    // echo "dziala";
+    var_dump($_POST);
+    $haslo = $_POST['haslo'];
+    $haslo2 = $_POST['haslo2'];
+    // unset($_SESSION['cel']);
+    // $_SESSION['messege'] = "xdd";
+    // print_r(get_included_files()); exit();
+    require_once("walidacja.php");
+    sprawdz_zmiany('haslo',"weryfikacja.php?vkey=".$_SESSION['verifikey']."&cel=zmianahasla");
+    // var_dump($haslo);
+    // var_dump($haslo2);
+    $sqlzmianahaslamail = "update uzytkownicy set haslo='".md5($haslo)."' where verification_key='".$_SESSION['verifikey']."'";
+    var_dump($sqlzmianahaslamail);
+    $conn->query($sqlzmianahaslamail);
+    $_SESSION['messege'] = "wszystko jest dobrze twoje haslo zostanie zmienione ";
+    header('location:index.php');
+    exit();
+
+
+  }
 }
-else{
+
+
+
+
+
+elseif(isset($_GET['vkey'])){
   $verifikey = $_GET['vkey'];
-  // require_once('baza_danych.php');
    var_dump($verifikey);
   $sqlweryfikacja = "update uzytkownicy set is_verified = 1 where verification_key like '".$verifikey."'";
-  // $sqlweryfikacja = "update uzytkownicy set is_verified = 1 where verification_key like \'$verifikey\'";
-  
+ 
   $verificationupdate = $conn->query($sqlweryfikacja);
   if($verificationupdate){
-    session_start();
+  
     $_SESSION['messege'] = "zweryfikowano pomyślnie , już możesz się zalogować ";
-    // echo"jestgit";
+    
     header('location:index.php');
     exit();
   }

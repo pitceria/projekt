@@ -6,7 +6,7 @@
     require 'phpmailer-master/src/Exception.php';
     require 'phpmailer-master/src/PHPMailer.php';
     require 'phpmailer-master/src/SMTP.php';
-    $kod = $_SESSION['verificode'];
+    // $kod = $_SESSION['verificode'];//nie wiem czy to potzrebne ale nie chce mi sie testowac raczej nie 
 function sendmail($do_kogo,$co){
     // session_start();
     header('Content-type: text/html; charset=utf-8');

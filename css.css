@@ -1,6 +1,6 @@
 body{
-    background-color:#121212;
-    color: #7e7e7e;
+    background-color: #696969;
+    color: white;
     
 }
 input{
@@ -11,11 +11,20 @@ button{
 }
 div{
     margin: 0 ;
+    border-radius: 15px;
 }
 a{
     text-decoration: none;
-    color: white;
+    color: rgb(0, 11, 59);
+}
+#paneldointerakcji img{
+    width: 100%;
+    height: 50%;
+    border-radius: 15px;
 }
 
 
-
+.pizza_container img {
+    width: 100%;
+    height: 50%;
+}
