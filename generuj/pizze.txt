@@ -1,0 +1,31 @@
+PIZZA DOUBLE PEPERONI: podwójne salami, sos pomidorowy, ser
+PIZZA CAPRICIOSA: szynka, pieczarki, sos pomidorowy
+PIZZA KEBAB: kurczak gyros, cebula, sos Gyros
+PIZZA PEPERONI: salami, cebula, sos pomidorowy
+PIZZA HAWAJSKA: szynka, ananas, sos pomidorowy
+PIZZA TEKSAŃSKI KURCZAK: kurczak gyros, kukurydza, sos barbecue
+PIZZA KEBAB DELUXE: mięso wołowo-drobiowe kebab, cebula, pomidor, mix sosów pikantny arabski i pomidorowy
+PIZZA BARBECUE HABANERO: kurczak gyros, papryka kolorowa, boczek, mix sosów śmietanowy oraz pikantny Barbecue
+PIZZA ITALIAN FIT: brokuły, aromatyczny ser śródziemnomorski, świeży pomidor, sos śmietanowy
+PIZZA BIESIADA SMAKÓW: pomidor, szynka, ser gouda wędzona, sos śmietanowy, ser 
+PIZZA KRÓLEWSKA GOUDA: ciasto finetta, boczek, pomidor, gouda wędzona 
+PIZZA GRECKA: ser śródziemnomorski, oliwki czarne , pomidor, zioła, sos pomidorowy
+PIZZA NEAPOLITANA: salami, oliwki czarne, papryka jalapeño, sos pomidorowy
+PIZZA UŚMIECH BORYNY: kabanos, pieczarki, cebula, sos pomidorowy
+PIZZA BIESIADA SEROWA: z serem pleśniowym, sos pomidorowy
+PIZZA BBQ PARTY: boczek, kurczak prażona cebula, sos BBQ Dark Beer - Roleski, ser
+PIZZA PARMA FIT: szynka dojrzewająca, pomidorki cherry, rukola, ser dojrzewający Grangusto, sos pomidorowy, ser, pestki dyni i słonecznika
+PIZZA ZBÓJNICKA: ser wędzony rolada ustrzycka, kabanos, żurawina, suszony rozmaryn, mix sosów śmietanowy i BBQ pikantny, ser
+PIZZA KOZACKA: boczek, kabanos, pieczarki, cebula, sos pomidorowy pikantny, ser
+PIZZA MEKSYKAŃSKA: mięso wołowe-drobiowe (kebab), boczek, kukurydza, papryka jalapeño, sos Jalapeño
+PIZZA HOT HABANAS: salami, papryka kolorowa, ananas, ser gouda wędzona, sos BBQ pikantny
+PIZZA BIG MEAT BBQ: podwójne mięso wołowo-drobiowe (kebab), cebula prażona, sos BBQ pikantny
+PIZZA TRZY MIĘSIWA: salami, szynka, kabanos, papryka kolorowa, sos barbecue pikantny
+PIZZA CARBONARA: boczek, cebula, pieczarki ,sos śmietankowy
+PIZZA PIEKIELNY KURCZAK: kurczak gyros, boczek, cebula, papryka jalapeńo, sos Jalapeńo
+PIZZA BORYNA NA HAWAJACH: szynka, ananas, kukurydza, sos pomidorowy kabanos, pieczarki, cebula, sos pomidorowy
+PIZZA BARBECUE: boczek, kurczak gyros, cebula, sos Barbecue
+PIZZA WEGETARIAŃSKA: pieczarki, cebula, kukurydza, papryka kolorowa, sos pomidorowy
+PIZZA KRÓLOWA 6 SERÓW: mozzarella w plastrach, ser śródziemnomorski, ser pleśniowy lazur, ser dojrzewający Grangusto, Gouda wędzona
+PIZZA EKSKLUZYWNA: szynka, pieczarki, papryka kolorowa, kukurydza, sos pomidorowy
+PIZZA MARGHERITA: ciasto, ser mozzarela Galbani, sos pomidorowy
