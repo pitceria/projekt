@@ -54,7 +54,7 @@ function makechecks($czego)
                 strlen($adres) < 5 => "nie wybrano poprawnego adresu  ",
                 $haslo2 != $haslo => "hasła nie są identyczne",
                 $mail_wynik->fetch_assoc()['count(email)'] != 0 => "taki adres email jest już zarejestrowany w naszy systemie spróbuj zresetować hasło",
-                $nick_wynik->fetch_assoc()['count(nick)'] != 0 => "taki nickname jest już zajety prosze wybrać inny"
+                $nick_wynik->fetch_assoc()['count(nick)'] != 0 => "taki nickname jest już zajety prosze wybrać inny",
                 $haslo_wynik->fetch_assoc()['count(haslo)'] != 0=>"takie haslo jest juz zajete i wcale nie dajemy ci prywatnych informacji uzytkownikow mowiac ci to ",
 
             ];

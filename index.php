@@ -52,32 +52,38 @@ unset($_SESSION['koszyk']);
 </head>
 
 <body>
-  <div class="section">
-    <!-- <div class = "row">  -->
+  <!-- <div class="section"> -->
+    <div class="container">
+      <div class = "row"> 
 
-    <!-- <div class="col-sm-4"> -->
-    <p>logowanie:</p>
-    <form action="logowanie.php" method="POST">
-      <input type='email' name='email' placeholder="wpisz email "><br />
-      <input type='password' name='haslo' placeholder="wpisz haslo"><br />
-      <input type='submit' name="btn" value="zaloguj">
-      <input type='submit' name="btn" value="zapomiales hasla?">
-    </form>
-    <p>rejestracja:</p>
-    <form action="rejestracja.php" method="POST">
-      <input type="text" name='nick' placeholder="wpisz nick"><br />
-      <input type="text" name='imie' placeholder="wpisz imie"><br />
-      <input type="text" name='nazwisko' placeholder="wpisz nazwisko"><br />
-      <input type="date" name="data_ur" placeholder="podaj datę urodzenia"><br />
-      <input type="text" name="adres" placeholder="podaj adres"><br />
-      <input type='email' name='email' placeholder="wpisz email"><br />
-      <input type='password' name='haslo' placeholder="wpisz hasło"><br />
-      <input type='password' name='haslo_powtorz' placeholder="powtórz hasło"><br />
-      <input type='submit' name="Submit">
-    </form>
-    <!-- </div> -->
+    
+      <div class="divyprzyrejestracji col-12 col-sm-6 col-md-4  offset-md-2 offset-lg-3 ">
+          <p>logowanie:</p>
+          <form action="logowanie.php" method="POST">
+            <input type='email' name='email' placeholder="wpisz email "><br />
+            <input type='password' name='haslo' placeholder="wpisz haslo"><br />
+            <input type='submit' name="btn" value="zaloguj">
+            <input type='submit' name="btn" value="zapomiales hasla?">
+          </form>
+        </div>
+        <div class="divyprzyrejestracji col-12 col-sm-6 col-md-4  offset-md-1">
+          <p>rejestracja:</p>
+          <form action="rejestracja.php" method="POST">
+            <input type="text" name='nick' placeholder="wpisz nick"><br />
+            <input type="text" name='imie' placeholder="wpisz imie"><br />
+            <input type="text" name='nazwisko' placeholder="wpisz nazwisko"><br />
+            <input type="date" name="data_ur" placeholder="podaj datę urodzenia"><br />
+            <input type="text" name="adres" placeholder="podaj adres"><br />
+            <input type='email' name='email' placeholder="wpisz email"><br />
+            <input type='password' name='haslo' placeholder="wpisz hasło"><br />
+            <input type='password' name='haslo_powtorz' placeholder="powtórz hasło"><br />
+            <input type='submit' name="Submit">
+          </form>
+        </div>
+      
+      </div>
   </div>
-  <!-- </div>  -->
+ 
 
 
 
