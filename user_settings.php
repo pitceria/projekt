@@ -1,4 +1,5 @@
 <?php
+require_once("klasy.php");
 session_start();
 var_dump($_SESSION);
 require_once("baza_danych.php");
@@ -200,40 +201,41 @@ if ($isloggedin) {
     <a href="wyloguj.php">wyloguj </a>
     <?php
     ?>
-    <form action="user_settings.php?co=dane" method="POST">
-        <input value="<?php echo $nick; ?>" type="text" name='nick' placeholder="wpisz imie"><br />
-        <input value="<?php echo $imie; ?>" type="text" name='imie' placeholder="wpisz imie"><br />
-        <input value="<?php echo $nazwisko; ?>" type="text" name='nazwisko' placeholder="wpisz nazwisko"><br />
-        <input value="<?php echo $data_ur; ?>" type="date" name="data_ur" placeholder="podaj datę urodzenia"><br />
 
-        <input value="<?php echo $adres; ?>" type="text" name="adres" placeholder="podaj adres"><br />
+            <form action="user_settings.php?co=dane" method="POST">
+                <input value="<?php  echo $nick; ?>" type="text" name='nick' placeholder="wpisz imie"><br />
+                <input value="<?php echo $imie;?>" type="text" name='imie' placeholder="wpisz imie"><br />
+                <input value="<?php echo $nazwisko; ?>" type="text" name='nazwisko' placeholder="wpisz nazwisko"><br/> 
+                <input value="<?php echo $data_ur  ?>" type="date" name="data_ur" placeholder="podaj datę urodzenia">
+                <input value="<?php echo $adres; ?>" type="text" name="adres" placeholder="podaj adres"><br />
 
-        <input type='submit' name="Submit" value="zaktualizuj">
-    </form>
-
-    <form method="POST" action="user_settings.php?co=email">
-        <input value="<?php echo $email; ?>" type='email' name='email' placeholder="wpisz email"><br />
-        <input type="submit" name="submit1" value="zaktualizuj email">
-
-    </form>
-    <form method="POST" action="user_settings.php?co=haslo">
-        <input value="" type='password' name='haslo_stare' placeholder="wpisz stare haslo"><br />
-        <input value="" type='password' name='haslo' placeholder="wpisz nowe haslo"><br />
-        <input value="" type='password' name='haslo2' placeholder="powtórz nowe haslo"><br />
-        <input type="submit" name="submit" value="zmien haslo">
-
-    </form></br>
-    <form action="user_settings.php?co=usun" method="post">
-        <span>usun konto:</span></br>
-        <span>potwierdz</span>
-        <input type="text" name="potwierdz">
-        <input type="submit">
-    </form>
-
-
-
-
-
+                <input type='submit' name="Submit" value="zaktualizuj">
+            </form>
+       
+        
+            <form method="POST" action="user_settings.php?co=email">
+                <input value="<?php
+                 echo $email; 
+                 ?>" type='email' name='email' placeholder="wpisz email"><br />
+                <input type="submit" name="submit1" value="zaktualizuj email">
+            </form>
+        
+            <form method="POST" action="user_settings.php?co=haslo">
+                <input value="" type='password' name='haslo_stare' placeholder="wpisz stare haslo"><br />
+                <input value="" type='password' name='haslo' placeholder="wpisz nowe haslo"><br />
+                <input value="" type='password' name='haslo2' placeholder="powtórz nowe haslo"><br />
+                <input type="submit" name="submit" value="zmien haslo">
+            </form>
+     
+        
+            <form action="user_settings.php?co=usun" method="post">
+                <span>usun konto:</span></br>
+                <span>potwierdz</span>
+                <input type="text" name="potwierdz">
+                <input type="submit">
+            </form>
+        
+ 
 
 
 

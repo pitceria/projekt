@@ -1,15 +1,14 @@
 <?php 
 require_once("baza_danych.php");
 require_once("maxid.php");
-var_dump($_POST);
+// var_dump($_POST);
 
 
 
 $valuestocheck = explode(",",$_POST['search']);
 $warunki = "where 1=1 and ( ";
-var_dump($valuestocheck);
+// var_dump($valuestocheck);
 
-//to działa tak srednio bo wszedzie musiał by być ten sam ciag znakow tj w nazwie rozmiarze skladnikach a to nie jest prawdopodobne 
 $action;
 if(strlen($valuestocheck[0])>0){
 if($valuestocheck[0][0]==";"){
@@ -53,8 +52,9 @@ foreach($valuestocheck as $key=>$value){
             $warunki.=" skladniki_json like '%".$value."%' or";
             }
             if($_POST['rozmiarchck']=="true"){
-                $warunki.=" rozmiar like '".$value."' or ";
+                $warunki.=" rozmiar like '%".$value."%' or ";
             }
+           
             $warunki.=' nazwa like "%'.$value.'%"  or';
             $koniec=" 1!=1)";
         }
@@ -85,10 +85,13 @@ $warunki.=$koniec;
 if($_POST['rozmiarset'] != "wszystkie rozmiary"){
     $warunki.="and rozmiar like '".$_POST['rozmiarset']."'";
 }
+if($_POST['cenachck']=="true"){
+    $warunki.=" and cena between ".$_POST['cenamin']." and ".$_POST['cenamax']." ";
+}
 
 
 $sql_pizza = "select * from pizza ".$warunki;
-var_dump($sql_pizza);
+// var_dump($sql_pizza);
 $bufor =$conn->query($sql_pizza);
 
 
@@ -100,7 +103,7 @@ if(@$bufor->num_rows == 0){
     echo "wow such empty  ";
 }
 else{
-echo "<br/> wyniki:  ".$bufor->num_rows."<br/>" ;
+echo "<div id='diviloscwynikow'> wyniki:  ".$bufor->num_rows."</div>" ;
 
 foreach ($bufor as $key => $value) {
   ?>
