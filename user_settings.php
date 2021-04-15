@@ -1,12 +1,12 @@
 <?php
 require_once("klasy.php");
 session_start();
-var_dump($_SESSION);
+// var_dump($_SESSION);
 require_once("baza_danych.php");
 $tmp = $_SESSION['iduzytkownicy'];
 $sqluser_settings = "SELECT iduzytkownicy,nick,imie,email,nazwisko,data_urodzenia,adres,is_verified,verification_key from uzytkownicy where iduzytkownicy = $tmp";
 $user_dane = $conn->query($sqluser_settings)->fetch_assoc();
-// var_dump($sqluser_settings);
+
 
 if (isset($_SESSION['error'])) {
     echo $_SESSION['error'];
@@ -15,7 +15,7 @@ if (isset($_SESSION['error'])) {
     echo $_SESSION['messege'];
     unset($_SESSION['messege']);
 }
-// unset($sql_update);
+
 
 
 $iduzytkownika = $user_dane['iduzytkownicy'];
@@ -29,102 +29,105 @@ $isverified = $user_dane['is_verified'];
 $isloggedin = $_SESSION['isloggedin'];
 $verificode = $user_dane['verification_key'];
 $_SESSION['verificode'] = $verificode;
-// var_dump($sql_update);
-echo "<br/>";
-var_dump($iduzytkownika);
+
+
 if (isset($_GET['co'])) {
     $tmpco = $_GET['co'];
     if ($tmpco == "dane") {
-        // var_dump($tmpco);
-
+        
+        require_once("walidacja.php");
+       
         $nick = $_POST['nick'];
         $imie = $_POST['imie'];
         $nazwisko = $_POST['nazwisko'];
         $data_ur = $_POST['data_ur'];
         $adres = $_POST['adres'];
-
-        // $sql_update_user_data = "UPDATE uzytkownicy set (nick,imie,,nazwisko,data_urodzenia,adres,)";
+         sprawdz_zmiany('dane', 'user_settings.php');
         $sql_update = "UPDATE uzytkownicy set nick = " . "'" . $nick . "'" . ",imie =" . "'" . $imie . "'" . ",nazwisko=" . "'" . $nazwisko . "'" . ",data_urodzenia=" . "'" . $data_ur . "'" . ",adres =" . "'" . $adres . "'" . " where iduzytkownicy = $iduzytkownika";
-        //dorobić walidacje //przerobić bardziej ale to mniejsza 
+        
 
-    } elseif ($tmpco == 'email') {
+    } 
+    elseif ($tmpco == 'email') {
         $email = $_POST['email'];
-        // require_once('walidacja.php');
-        // sprawdz_zmiany('email','user_settings.php');
+        require_once('walidacja.php');
+        sprawdz_zmiany('email','user_settings.php');
         require_once('sendmail.php'); //email gdzie iduser != od tego aktualnego jezeli count jet >1 nie moze 
         $email_zmiana_nowy = $_POST['email'];
         $sql_zmiana_emaila_sprawdzczy_wolny = "SELECT COUNT(email) as ile  from uzytkownicy where iduzytkownicy != " . $iduzytkownika . " and email like '" . $email_zmiana_nowy . "'";
         var_dump($sql_zmiana_emaila_sprawdzczy_wolny);
         $tmpmail = $conn->query($sql_zmiana_emaila_sprawdzczy_wolny);
 
-        // $all = $tmpmail->fetch_all();
+       
         $ile = $tmpmail->fetch_assoc()['ile'];
         var_dump($ile);
         if ($ile == 0) {
-
-            //nie wysyła maila nie wiem czemu ;
-            // $kod = md5($email_zmiana_nowy);
             $kod = $verificode;
-            // $_SESSION['do_zmiany_maila']=1;
+
             $_SESSION['nowy_mail'] = $email_zmiana_nowy;
             $link = "<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=" . $verificode . "&cel=mail'>link do zmiany maila </a>";
             sendmail($email_zmiana_nowy, $link);
+            $_SESSION['messege'] ="wiadomość z potwierdzeniem została wysłana";
         } else {
             $_SESSION['error'] = "taki adres email jest już zapisany w naszej bazie danych nie możesz zmienić aktualnego na ten  ";
             header('location:user_settings.php');
             exit();
         }
-        // foreach ($all as $key => $value) {
-        //     var_dump($value);
-
-
-        //     # code...
-        // }
+     
         unset($sql_update);
-    } elseif ($tmpco == 'usun') {
-        $tresc = $_POST['potwierdz'];
-        if ($tresc == "potwierdzam") {
-            $sql_usun_konto = "UPDATE uzytkownicy set is_active=0 where iduzytkownicy = " . $iduzytkownika;
-            $_SESSION['messege'] = "potwierdziles i twoje konto jest usuniete co znaczy ze nie mozesz z niego korzystac :)";
-            var_dump($sql_usun_konto);
-            $conn->query($sql_usun_konto);
-            header('location:wyloguj.php');
-            header('location:user_settings.php');
-            exit();
-        } else {
-            $_SESSION['error'] = "nie potwierdziles";
-            header('location:user_settings.php');
-            exit();
+    }
+    elseif ($tmpco == 'usun') {
+        $sql_sprawdz_czy_ma_obecne_zamowienia_nieodebrane = "SELECT COUNT(iduzytkownicy) FROM `zawartosc_zamowien_pizza` JOIN zawartosc_zamowien_has_pizza on zawartosc_zamowien_has_pizza.zawartosc_zamowien_pizza_zamowienia_id=zamowienia_id where status = 0 and iduzytkownicy = $iduzytkownika";
+        $tmp = $conn->query($sql_sprawdz_czy_ma_obecne_zamowienia_nieodebrane)->fetch_assoc();
+        var_dump($tmp);
+        if($tmp["COUNT(iduzytkownicy)"] == 0){
+            $tresc = $_POST['potwierdz'];
+            if ($tresc == "potwierdzam") {
+                $sql_usun_konto = "UPDATE uzytkownicy set is_active=0 where iduzytkownicy = " . $iduzytkownika;
+                $_SESSION['messege'] = "potwierdziles i twoje konto jest usuniete co znaczy ze nie mozesz z niego korzystac :)";
+                var_dump($sql_usun_konto);
+                $conn->query($sql_usun_konto);
+                header('location:wyloguj.php');
+                exit();
+                // header('location:user_settings.php');
+                // exit();
+            } else {
+                $_SESSION['error'] = "nie potwierdziles";
+                header('location:user_settings.php');
+                exit();
+            }
         }
-    } elseif ($tmpco == 'haslo') {
+        else{
+            $_SESSION['error'] = "masz aktywne zamowienia nie możesz usunąć konta z aktywnymi zamówieniami";
+            header('location:user_settings.php');
+            exit();
+            
+        }
+       
+    } 
+    elseif ($tmpco == 'haslo') {
 
         $haslo_stare = md5($_POST['haslo_stare']);
 
         $haslo = $_POST['haslo'];
         $haslo2 = $_POST['haslo2'];
         require_once('walidacja.php');
-        // $sql_check_if_password_is_correct = "SELECT haslo from uzytkownicy where iduzytkownicy  = ".$iduzytkownika;
+
         $sql_get_users_password_for_comparision = "SELECT haslo from uzytkownicy where iduzytkownicy  = " . $iduzytkownika;
-        // $haslotmp = $conn->query($sql_check_if_password_is_correct);
-        // var_dump($haslotmp);
+        
         $haslo_stare_z_bazy = $conn->query($sql_get_users_password_for_comparision);
         $haslo_stare_z_bazy = $haslo_stare_z_bazy->fetch_all();
-        // var_dump($haslo_stare_z_bazy);
-        // var_dump($haslo_stare_z_bazy->fetch_all()[0]);
-        // var_dump($haslo_stare);
+      
         if ($haslo_stare == $haslo_stare_z_bazy[0][0]) {
 
             if (md5($haslo) == $haslo_stare_z_bazy[0][0]) {
-                // sprawdz_zmiany('haslo','user_settings.php');
+                
                 $_SESSION['error'] = "haslo nie moze byc identyczne z poprzednim ";
                 header('location:user_settings.php');
                 exit();
             } else {
-                // echo 'succes';
+                
                 sprawdz_zmiany('haslo', 'user_settings.php');
                 $_SESSION['messege'] = "twoje  haslo zostało zmienione";
-                // header('location:user_settings.php');
-                // exit();
             }
         } else {
             $_SESSION['error'] = "stare haslo jest nie poprawne";
@@ -133,51 +136,25 @@ if (isset($_GET['co'])) {
         }
 
         $haslo = md5($haslo);
-
-        // var_dump($_SESSION);
         $sql_update = "UPDATE uzytkownicy set haslo ='" . $haslo . "' where iduzytkownicy = $iduzytkownika";
-    } elseif (1 == 1) {
-        echo "nie ma takiej opcji ";
-    } else {
-    }
+        $_SESSION['test'] = $sql_update;
+    } 
+      
     if (isset($sql_update)) {
         $conn->query($sql_update);
         var_dump($sql_update);
-        // header('location:user_settings.php');
-        // exit();
+        header('location:user_settings.php');
+        exit();
     } else {
     }
-    // var_dump($haslo_stare);
-    // $bufor_update =$conn->query($sql_update)->fetch_all();
-    // var_dump($bufor_update);
+    
     if (isset($sql_update)) {
         var_dump($sql_update);
     }
 
-    // header('location:user_settings.php');
+    header('location:user_settings.php');
 }
 
-// $nick = $user_dane['nick'];
-// $imie = $user_dane['imie'];
-// $nazwisko = $user_dane['nazwisko'];
-// $data_ur = $user_dane['data_urodzenia'];
-// $adres = $user_dane['adres'];
-// $email = $user_dane['email'];
-// $isverified = $user_dane['is_verified'];
-// $isloggedin = $_SESSION['isloggedin'];
-
-// unset($_GET['co']);
-// unset($tmpco);
-
-// if(isset($_POST['Submit'])){
-//   echo"działa";
-
-// //   tu trzeba dać update do bazy danych 
-// }else{
-
-// }
-
-// echo "ustawienia";
 if ($isloggedin) {
 } else {
     $_SESSION['error'] = "nie jesteś zalogowany prosimy sie zalogować";
@@ -206,7 +183,7 @@ if ($isloggedin) {
                 <input value="<?php  echo $nick; ?>" type="text" name='nick' placeholder="wpisz imie"><br />
                 <input value="<?php echo $imie;?>" type="text" name='imie' placeholder="wpisz imie"><br />
                 <input value="<?php echo $nazwisko; ?>" type="text" name='nazwisko' placeholder="wpisz nazwisko"><br/> 
-                <input value="<?php echo $data_ur  ?>" type="date" name="data_ur" placeholder="podaj datę urodzenia">
+                <input value="<?php echo $data ; ?>" type="date" name="data_ur" placeholder="podaj datę urodzenia"><br/> 
                 <input value="<?php echo $adres; ?>" type="text" name="adres" placeholder="podaj adres"><br />
 
                 <input type='submit' name="Submit" value="zaktualizuj">

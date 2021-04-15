@@ -16,7 +16,8 @@ setkoszyk($_SESSION['iduzytkownicy']);
 
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
+
 
 <html lang="en">
 <head>
@@ -51,17 +52,17 @@ setkoszyk($_SESSION['iduzytkownicy']);
   <div class="row">
     <a href='wyloguj.php'>wyloguj</a>
     <a href='user_settings.php'>ustawienia</a>
-    <button id="koszykshowbtn" onclick="showkoszyk()"> twoj koszyk</button>
+    <button id="koszykshowbtn" onclick="showkoszyk()"> Twój koszyk</button>
     
     
 <?php 
 echo"<br/>";
 //wypisz dane usera 
 foreach ($_SESSION as $key => $value) {
-  if($key!="koszyk"){
-    echo $key." : ".serialize($value)."<br/>";
-  }
-  // echo $key." : ".serialize($value)."<br/>";
+  // if($key!="koszyk"){
+  //   echo $key." : ".serialize($value)."<br/>";
+  // }
+  echo $key." : ".serialize($value)."<br/>";
     
 }
 
@@ -173,131 +174,7 @@ foreach ($bufor as $key => $value) {
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-
- var tlo = document.createElement('div');//tlo 
-tlo.style.cssText = 'position:fixed;top:0;width:100%;height:100vh;opacity:0.3;z-index:100;background:#000;';
-tlo.id="tlo";
-var panelDoInterakcji = document.createElement("div");//panel
-panelDoInterakcji.classList.add( "col-12", "col-sm-6","offset-sm-2","offset-lg-3")
-panelDoInterakcji.style.cssText = 'position:fixed;top:15vh;height:70vh;z-index:101;background:#fff;color:#000;';
-panelDoInterakcji.id="paneldointerakcji";
-
-var panelDointerakcjikrzyzykdozamykania  = document.createElement('div');//krzyzyk
-panelDointerakcjikrzyzykdozamykania.id ='panelDointerakcjikrzyzykdozamykania';
-// $("#panelDointerakcjikrzyzykdozamykania").html('✖');
-panelDointerakcjikrzyzykdozamykania.innerHTML = '✖';
-// panelDoInterakcji.appendChild(panelDointerakcjikrzyzykdozamykania);
-panelDointerakcjikrzyzykdozamykania.addEventListener("click",()=>{
-  usunpanelinterakcji();
-})
-
-
-
-
-function choose(numer){
-  console.log(numer);
-  pokazpanelinterakcji();
-  // console.log(tlo.id);
-  $(document).ready(function(){
-    $.ajax({
-        url:'paneldointerakcjicontent.php?idpizza='+numer,
-        type:'post',
-        data:{search:$(this).val()},
-        success:function(result){
-          $("#paneldointerakcji").html(result);
-          
-        }
-      })
-  })
-
-
-  
-  
-}
-tlo.addEventListener("click",()=>{
-
-  usunpanelinterakcji();
- 
-})
-function pokazpanelinterakcji(){
-document.body.appendChild(tlo);
-document.body.appendChild(panelDoInterakcji);
-document.body.appendChild(panelDointerakcjikrzyzykdozamykania);
-
-}
-function usunpanelinterakcji(){
- document.body.removeChild(tlo);
-  document.body.removeChild(panelDoInterakcji);
-  document.body.removeChild(panelDointerakcjikrzyzykdozamykania);
-}
-
-
-
-$(document).ready(function(){
-    $("#search").keyup(function(){
-       query();
-       console.log(range.noUiSlider.get())
-       
-    });
-    
-  });
-function query(){
-      $.ajax({
-        url:'wyswietlpizze.php',
-        type:'post',
-        data:{search: $("#search").val(),skladnikichck: $("#chck1").is(":checked"),rozmiarchck: $("#chck2").is(":checked"),cenachck: $("#chck3").is(":checked"),rozmiarset:$("#rozmiarset").val(),cenamin:range.noUiSlider.get()[0],cenamax:range.noUiSlider.get()[1]},
-        success:function(result){
-          $("#pizza_container_container").html(result);
-          // $("#koszykshowbtn").html("w twoim koszyku jest :".count($_SESSION['koszyk']."zamowien");
-        }
-      });
-}
-function cenachangestate(){
-  let state = $("#chck3").is(":checked");
-  if(state){
-    range.removeAttribute('disabled');
-    
-  }else{
-    range.setAttribute('disabled', true);
-  }
-  
-
-// To re-enable
-  
-
-  console.log(state);
-}
-function showkoszyk(){
-  pokazpanelinterakcji();
-  $.ajax({
-        url:'koszykinterakcja.php',
-        type:'post',
-        //zeby sie pozniej nie zastanawiac te zmienne sa bez znaczenia raczej i zostaly po przekopiowaniu :)
-        data:{search: $("#search").val(),skladnikichck: $("#chck1").is(":checked"),rozmiarchck: $("#chck2").is(":checked"),rozmiarset:$("#rozmiarset").val()},
-        success:function(result){
-          $("#paneldointerakcji").html(result);
-        }
-      });
-}
-function widzizawartosc(idzamowienia){
-  // let dozdjecia = document.querySelector('.zawartosc').style.display = "none";
-  let dozdjecia = document.querySelectorAll('.zawartosc');
-  unikalnaklasa = '.x-' + idzamowienia;
-  // $('.x-'+idzamowienia).style.display = "block";
-
-  console.log(unikalnaklasa);
-  // let dopokazanie =document.querySelector(unikalnaklasa).style.display = "block";
-  let dopokazania =document.querySelectorAll(unikalnaklasa);
-  for(dozdj of dozdjecia){
-    dozdj.style.display = "none";
-  }
-  for(dopokaz of dopokazania){
-    dopokaz.style.display = "block";
-  }
-}
-
-</script>
+<script src="userpaneljs.js"></script>
 <script>
 //slider
     var range = document.querySelector('#range');
@@ -314,23 +191,12 @@ function widzizawartosc(idzamowienia){
         }
     });
 
-
-
-//wyswietloddo
     var nodes = [
     document.getElementById('lower-value'), // 0
     document.getElementById('upper-value')  // 1
 ];
 
-// Display the slider value and how far the handle moved
-// from the left edge of the slider.
-// range.noUiSlider.on('end', function (values, handle, unencoded, isTap, positions) {//tutaj mogłoby być update albo change zeby wyniki były w czasie rzeczywistym ale to strasznie laguje jak wysyłasz 20zapytań na sekunde
-    
-//     console.log(handle);
-//     query();
-  
-//     nodes[handle].innerHTML = values[handle] +" zł" ;
-// });
+
 range.noUiSlider.on('set', function (values, handle, unencoded, isTap, positions) {
     console.log(handle);
     query();

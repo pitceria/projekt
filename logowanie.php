@@ -7,20 +7,7 @@ require_once('baza_danych.php');
 @$sql="select iduzytkownicy,nick,imie,nazwisko,adres,is_admin,data_urodzenia,is_verified,is_active,email,haslo,count(iduzytkownicy) as count,verification_key from uzytkownicy where email like '".$email."'";
 @$bufor =$conn->query($sql);
 @$row = $bufor->fetch_assoc();
-// $verificode = 
-var_dump($_POST);
-var_dump($row);
-var_dump($_SESSION);
-//nie moze byc tutaj bo przy zapomniales hasla nie ma emaila 
-// if($_POST['email']==""){
-//     $_SESSION['error'] ="prosze wpisać adres email " ;
-//     header('location:index.php');
-//     exit();
-// }elseif($_POST['haslo']==""){
-//     $_SESSION['error'] ="prosze wpisac haslo" ;
-//     header('location:index.php');
-//     exit();
-// }
+
 
 if(@$_POST['btn'] == "zaloguj"){
     if($_POST['email']==""){
@@ -95,7 +82,7 @@ foreach ($checks as $key => $value) {
 else if(@$_POST['btn'] == "zapomiales hasla?"){
 
 
-    echo "dzialaa";
+    // echo "dzialaa";
     if($email == ""){
             $_SESSION['messege'] = "nalezy wpisac adres email w celu zmiany hasla ";
             header('location:index.php');

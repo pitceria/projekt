@@ -9,7 +9,7 @@ if(isset($_SESSION['error'])){
   echo $_SESSION['messege'];
   unset($_SESSION['messege']);
 }
-
+// var_dump($_SESSION);
 
 
 
@@ -47,18 +47,16 @@ if(isset($_GET['cel'])){
 
   }
 
+}
+
   elseif($_SESSION['cel'] == "zmianahasla2"){
-    // echo "dziala";
+    
     var_dump($_POST);
     $haslo = $_POST['haslo'];
     $haslo2 = $_POST['haslo2'];
-    // unset($_SESSION['cel']);
-    // $_SESSION['messege'] = "xdd";
-    // print_r(get_included_files()); exit();
+  
     require_once("walidacja.php");
     sprawdz_zmiany('haslo',"weryfikacja.php?vkey=".$_SESSION['verifikey']."&cel=zmianahasla");
-    // var_dump($haslo);
-    // var_dump($haslo2);
     $sqlzmianahaslamail = "update uzytkownicy set haslo='".md5($haslo)."' where verification_key='".$_SESSION['verifikey']."'";
     var_dump($sqlzmianahaslamail);
     $conn->query($sqlzmianahaslamail);
@@ -68,11 +66,6 @@ if(isset($_GET['cel'])){
 
 
   }
-}
-
-
-
-
 
 elseif(isset($_GET['vkey'])){
   $verifikey = $_GET['vkey'];

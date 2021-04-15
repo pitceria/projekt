@@ -1,6 +1,6 @@
 <?php
 session_start();
-var_dump($_SESSION);
+
 
 if (isset($_SESSION['error'])) {
   echo $_SESSION['error'];
@@ -52,7 +52,7 @@ unset($_SESSION['koszyk']);
 </head>
 
 <body>
-  <!-- <div class="section"> -->
+  
     <div class="container">
       <div class = "row"> 
 

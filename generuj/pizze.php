@@ -69,7 +69,6 @@ if ($conn->connect_error) {
   }
 
 
-
 $handle = @fopen("pizze.txt", "r");
 if ($handle) {
     $pizzacount = 0 ;
@@ -94,7 +93,8 @@ if ($handle) {
             $rozmiar = "'".$tablica[$i]."'";
             $nazwa = "'".$arr[0]."'";
             $sciezka = "'".$pizzacount.".jpg'";
-            $sql="insert into pizza values(null,$nazwa,$json,$cena,$rozmiar,$sciezka)";
+            $lorlinia = " 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, tempora!'";
+            $sql="insert into pizza values(null,$nazwa,$json,$cena,$rozmiar,$sciezka,$lorlinia)";
             echo "<br/>";
             echo "$sql";
             print_r($sql);
