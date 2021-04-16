@@ -7,7 +7,7 @@ $isloggedin = $_SESSION['isloggedin'];
 if($isloggedin){
 }
 else{
-  wypaddoindexuerror("nie jesteś zalogowany prosimy sie zalogować");//nie testowany ale myśle że ciekawy pomysł
+  wypaddoindexuerror("nie jesteś zalogowany prosimy sie zalogować");
 }
 
 require_once("ustawkoszyk.php");
@@ -59,10 +59,10 @@ setkoszyk($_SESSION['iduzytkownicy']);
 echo"<br/>";
 //wypisz dane usera 
 foreach ($_SESSION as $key => $value) {
-  // if($key!="koszyk"){
-  //   echo $key." : ".serialize($value)."<br/>";
-  // }
-  echo $key." : ".serialize($value)."<br/>";
+  if($key!="koszyk"){
+    echo $key." : ".serialize($value)."<br/>";
+  }
+  // echo $key." : ".serialize($value)."<br/>";
     
 }
 

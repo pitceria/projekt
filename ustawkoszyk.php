@@ -19,7 +19,6 @@ if(count($koszykwynik)!=0){
 }
 }
 
-
 $_SESSION['koszyk'] = $tablicazklas; 
 
 }

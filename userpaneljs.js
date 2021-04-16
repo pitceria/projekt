@@ -108,20 +108,29 @@
  }
  
  function widzizawartosc(idzamowienia){
-   // let dozdjecia = document.querySelector('.zawartosc').style.display = "none";
-   let dozdjecia = document.querySelectorAll('.zawartosc');
+
+  //  let dozdjecia = document.querySelectorAll('.zawartosc');
    unikalnaklasa = '.x-' + idzamowienia;
-   // $('.x-'+idzamowienia).style.display = "block";
- 
    console.log(unikalnaklasa);
-   // let dopokazanie =document.querySelector(unikalnaklasa).style.display = "block";
    let dopokazania =document.querySelectorAll(unikalnaklasa);
-   for(dozdj of dozdjecia){
-     dozdj.style.display = "none";
-   }
+  //  for(dozdj of dozdjecia){
+  //    dozdj.style.display = "none";
+  //  }
    for(dopokaz of dopokazania){
-     dopokaz.style.display = "block";
+     console.log(dopokaz.style.display);
+     if(dopokaz.style.display != "block"){
+      dopokaz.style.display = "block";
+     }
+     else{
+       dopokaz.style.display ="none";
+     }
+     console.log(dopokaz.style.display);
+
    }
+
+
+
+   
  }
  //zmienia
  function zmianazawartosci(co,komu){
@@ -165,8 +174,10 @@ ktonagorze = 'nowe';
 
 
      if(ktonagorze =="nowe"){
-         starediv.style.display = 'none';
+        starediv.style.display = 'none';
         nowediv.style.display = 'block';
+        // nowediv.style.backgroundColor = 'yellow';//to nie jest ładne tylko zeby pokazac ze mozna
+        
      }
      else{
         starediv.style.display = 'block';

@@ -6,7 +6,7 @@
     $bufor = $conn->query($sql_wybrana_pizza);
     // var_dump($bufor->fetch_all());
     // var_dump($sql_wybrana_pizza);
-    $sql_otwarte_zamowienia = "SELECT zamowienia_id FROM `zawartosc_zamowien_pizza` WHERE iduzytkownicy = {$_SESSION['iduzytkownicy']}";
+    $sql_otwarte_zamowienia = "SELECT zamowienia_id FROM `zawartosc_zamowien_pizza` WHERE iduzytkownicy = {$_SESSION['iduzytkownicy']} and status=0";
     $otwarte_zamowienia = $conn->query($sql_otwarte_zamowienia)->fetch_all();
 ?>
 <!DOCTYPE html>

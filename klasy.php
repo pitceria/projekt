@@ -8,7 +8,7 @@ class zamowienie{
     public $godzina_przyjecia;
     public $godzina_wydania;
     public $status;
-    public $status_tab =["zamowione","wykonane"];
+ 
     
     // public $pizze_w_srodku =[];
     public $pizze_w_srodku  = array();
@@ -30,32 +30,66 @@ class zamowienie{
         }
         return $tmpsuma;
     }
-    public function show_yourself_as_a_beautiful_div(){
+    public function show_yourself_as_a_beautiful_div($gdzie){
+        $tekst ="";
+        $tmptekstzmienna;
+        $ilosc_pozycji = count($this->pizze_w_srodku);
+        if ($ilosc_pozycji == 0 ){
+            $tekst= "w tym zamowieniu nie ma zadnych poazycji moze cos zamowisz ?";
+            $tmptekstzmienna = 1;
+        }
+        else{
+            $tekst= "ilosc pozycji :".$ilosc_pozycji."  ";
+            $tmptekstzmienna =2;
+        }
+
+
+        if($gdzie == 'aktywne'){
         ?>
-        <div class='imabeautifulldiv' onclick='widzizawartosc(<?php echo $this->id_zamowienia?>)'> <?php $this->wypisz();echo ' suma zamowien  : '.$this->returnsumacenzamowien(); ?> <button onclick="usunzamowienie(<?php echo $this->id_zamowienia?>)">usun zamowienie</button></div>
+        <div class='imabeautifulldiv' onclick='widzizawartosc(<?php echo $this->id_zamowienia?>)'> <?php echo ' suma zawartości  : '.$this->returnsumacenzamowien()." zł "; ?>
 
+        <button id='usunzamowieniebtn' onclick="usunzamowienie(<?php echo $this->id_zamowienia?>)">
+        usun zamowienie
+        </button>
         <?php
+        if($tmptekstzmienna == 2){
+            echo $tekst;
+        }
+        ?>
+        </div>
+        <?php
+        }
+
+
+
+        elseif($gdzie == 'przeszle'){
+            ?>
+            <div class='imabeautifulldiv' onclick='widzizawartosc(<?php echo $this->id_zamowienia?>)'> 
+            <?php  
+             echo ' suma zawartości  : '.$this->returnsumacenzamowien()." zł ". " ilosc pizz w srodku ".count($this->pizze_w_srodku); 
+            //  print_r($this->pizze_w_srodku);
+            ?>
+          
+            </div>
+
+
+
+            <?php
+        }
 
 
     }
-    public function wypisz(){
+    // public function wypisz(){
         
-        return  $this->id_zamowienia.' '.$this->id_uzytkownika.' '.$this->data.' '.$this->godzina_przyjecia.' '.$this->godzina_wydania.' ';
+    //     return  $this->id_zamowienia.' '.$this->id_uzytkownika.' '.$this->data.' '.$this->godzina_przyjecia.' '.$this->godzina_wydania.' ';
         
         
-    }
-    public function wypiszzawartosc(){
+    // }
+    public function wypiszzawartosc($czego="zawartosc"){
     
-            $ilosc_pozycji = count($this->pizze_w_srodku);
-            
-            if ($ilosc_pozycji == 0 ){
-                echo "w tym zamowieniu nie ma zadnych poazycji moze cos zamowisz ?";
-            }
-            else{
-                echo "ilosc pozycji :".$ilosc_pozycji."  ";
-            }
+           
             foreach ($this->pizze_w_srodku as $key => $value) {
-                $value->pokaz();
+                $value->pokaz($czego);
                 
             }
             
@@ -72,7 +106,6 @@ class zamowienie{
         // var_dump($sqlgetgetcontents);
         
         if($contents!=null){
-            
              foreach($contents as $key=>$value){
                 
                 $tmp = new zawartosc($value[0],$value[1],$value[2],$value[3],$value[4],$value[5],$value[6],$value[7],$value[8],$value[9],$value[10],$value[11]);
@@ -128,7 +161,6 @@ class zawartosc{
         <div class ='zawartosc x-<?php echo $this->idzamowienia;?> clearfix  '><div>
         <img class="rounded float-left" src ="assety\zdjecia_pizzy/<?php echo $this->sciezka_zdjecie; ?>">
         <p class='text-muted'>zamowienie nr <?php echo $this->idpizzy.' ile: '.$this->ilosc.'opis :'.$this->dodatkowe_informacje.' nazwa :'.$this->nazwa.' lista skladnikow'.join($this->skladniki_json,",").' cena jednostkowa '.$this->cena.' rozmiar'.$this->rozmiar.' opis :'.$this->opis.' id: '.$this->id_pk?></p>
-        
         <button onclick="zmianazawartosci('dodaj','<?php echo $this->id_pk?>')">+</button>
         <button onclick="zmianazawartosci('odejmij','<?php echo $this->id_pk?>')">-</button>
         <button onclick="zmianazawartosci('usun','<?php echo $this->id_pk?>')">usun</button>
@@ -141,8 +173,11 @@ class zawartosc{
         elseif($jakoco == "zawartoscbylychzamowien"){
             ?>
             <div class ='zawartosc x-<?php echo $this->idzamowienia;?> clearfix  '><div>
-        <img class="rounded float-left" src ="assety\zdjecia_pizzy/<?php echo $this->sciezka_zdjecie; ?>">
-        <p class='text-muted'>zamowienie nr <?php echo $this->idpizzy.' ile: '.$this->ilosc.'opis :'.$this->dodatkowe_informacje.' nazwa :'.$this->nazwa.' lista skladnikow'.join($this->skladniki_json,",").' cena jednostkowa '.$this->cena.' rozmiar'.$this->rozmiar.' opis :'.$this->opis.' id: '.$this->id_pk?></p>
+            <img class="rounded float-left" src ="assety\zdjecia_pizzy/<?php echo $this->sciezka_zdjecie; ?>">
+            <p class='text-muted'>zamowienie nr <?php echo $this->idpizzy.' ile: '.$this->ilosc.'opis :'.$this->dodatkowe_informacje.' nazwa :'.$this->nazwa.' lista skladnikow'.join($this->skladniki_json,",").' cena jednostkowa '.$this->cena.' rozmiar'.$this->rozmiar.' opis :'.$this->opis.' id: '.$this->id_pk?></p>
+            </div>
+            </div>
+
             <?php
         }
     }
