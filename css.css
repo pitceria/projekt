@@ -177,6 +177,9 @@ button:focus {
 button:active {
     transform: scale(0.99);
 }
+button:disabled{
+    background-color: rgb(160, 201, 255);
+}
 #starezam{
     display: none;
     background-color: #86fad7;

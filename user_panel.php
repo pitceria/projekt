@@ -58,13 +58,14 @@ setkoszyk($_SESSION['iduzytkownicy']);
 <?php 
 echo"<br/>";
 //wypisz dane usera 
-foreach ($_SESSION as $key => $value) {
-  if($key!="koszyk"){
-    echo $key." : ".serialize($value)."<br/>";
-  }
-  // echo $key." : ".serialize($value)."<br/>";
+// foreach ($_SESSION as $key => $value) {
+//   // if($key!="koszyk"){
+//   //   echo $key." : ".serialize($value)."<br/>";
+//   // }
+//   // echo $key." : ".serialize($value)."<br/>";
     
-}
+// }
+echo "witaj ".$_SESSION['nick']." masz pewnie na imie ".$_SESSION['imie']." a nazwisko pewnie wymyśliłeś " .$_SESSION['nazwisko']." jedyny prawdziwy argument(adres) ".$_SESSION['adres']." z temp maila pewnie ".$_SESSION['email']." data ".$_SESSION['data_ur'];
 
 //pokaz wszyskie pizze 
 // require_once('baza_danych.php');

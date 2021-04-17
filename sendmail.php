@@ -3,9 +3,9 @@
  use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     
-    require 'phpmailer-master/src/Exception.php';
-    require 'phpmailer-master/src/PHPMailer.php';
-    require 'phpmailer-master/src/SMTP.php';
+    require 'PHPMailer-master/src/Exception.php';
+    require 'PHPMailer-master/src/PHPMailer.php';
+    require 'PHPMailer-master/src/SMTP.php';
     // $kod = $_SESSION['verificode'];//nie wiem czy to potzrebne ale nie chce mi sie testowac raczej nie 
 function sendmail($do_kogo,$co){
     // session_start();
@@ -19,7 +19,7 @@ function sendmail($do_kogo,$co){
     // $link = "<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=$kod'>link do weryfikacji</a>";
     $link = $co;
     $tresc = $link;
-    $temat = 'rejestracja na stronie   nalepszej pizzeri w mieście';
+    $temat = ' wiadomość od   nalepszej pizzeri w mieście';
     
     date_default_timezone_set('Europe/Warsaw');
     

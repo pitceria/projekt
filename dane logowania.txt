@@ -11,8 +11,7 @@ dysk google
 https://drive.google.com/drive/folders/1SFZv1l5bZI669M3xH36LwwlFwbUlfoQh?usp=sharing
 
 
-test skasowac 
-http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=d00418b74c1aa8a4a8b3eeaa75a00e1c&cel=zmianahasla
+
 
 
 konto admina w projekcie :

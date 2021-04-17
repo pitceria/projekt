@@ -20,10 +20,10 @@ if(@$_POST['btn'] == "zaloguj"){
         exit();
     }
 echo "<br/>";
-var_dump($row['is_active']);
+// var_dump($row['is_active']);
 if(isset($row['email'])){
     $checks = [
-        $row['is_verified']=>"nie jesteś zweryfikowany przesłaliśmy link weryfikujący na podany przez ciebie adres email w celu weryfikacji należy go kliknąć w przypadku gdyby nie dotarł prosimy o kliknięcie w ten link w celu powtórnego wysłania <a><a/>",
+        $row['is_verified']=>"nie jesteś zweryfikowany przesłaliśmy link weryfikujący na podany przez ciebie adres email w celu weryfikacji należy go kliknąć",
         $haslo == $row['haslo'] =>"wprowadzone hasło nie jest prawidłowe ",
         $row['is_active'] != "0" => "twoje konto zostało usuniete  tej operacji nie można cofnąć (tak łatwo)",
         
@@ -37,9 +37,9 @@ foreach ($checks as $key => $value) {
         else{
             $_SESSION['error'] = $value;
             header('location:index.php');
-            var_dump($_SESSION);
+            // var_dump($_SESSION);
             echo "<br/>";
-            var_dump($row);
+            // var_dump($row);
             exit();
             break;
         }
@@ -55,12 +55,13 @@ foreach ($checks as $key => $value) {
                 $_SESSION['haslo']= $row['haslo'];
                 $_SESSION['isloggedin'] = true;
                 $_SESSION['koszyk'] = [];
+                $_SESSION['isadmin'] = $row['is_admin'];
                 unset($_SESSION['error']);
                 unset($_SESSION['verificode']);
                 unset($_SESSION['haslo']);
-                var_dump($row);
+                // var_dump($row);
                 if($row['is_admin']=='1'){
-                    echo "jestes admin";
+                    echo "jestes adminem <br/>";
                     ?>
                     <a href="user_panel.php">idz do panelu uzytkownika</a><br/>
                     <a href="admin_panel.php">idz do panelu administratora</a>
@@ -99,9 +100,16 @@ else if(@$_POST['btn'] == "zapomiales hasla?"){
 
 
     require_once('sendmail.php');
-    $link = "<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=".$row['verification_key']."&cel=zmianahasla'>link do zmiany hasla </a>";
+    // $link = "<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=".$row['verification_key']."&cel=zmianahasla'>link do zmiany hasla </a>";
+    $link = "<a href='http://pitcernia.opole.pl/weryfikacja.php?vkey=".$row['verification_key']."&cel=zmianahasla'>link do zmiany hasla </a>";
+    
     sendmail($email,$link);
+    $_SESSION['messege']= "link został wysłany ";
+    header("loaction:index.php");
+    exit();
 }
+    // header('location:index.php');
+    // exit();
 
 //nieproszone wejscie z palca prze sciezke jescze trzeba cos z tym zrobic bo nie dziala 
 

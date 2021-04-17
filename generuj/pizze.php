@@ -63,11 +63,14 @@
 
 ?>
 <?php
-@$conn = new mysqli("localhost",'root','','mydb');
+// @$conn = new mysqli("localhost",'root','','mydb');
+// if ($conn->connect_error) {
+//     die("Connection failed: " . $conn->connect_error);
+//   }
+$conn = new mysqli("localhost","pitcerni_mydb","ZAQ!2wsx","pitcerni_mydb");
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
+  die("Connection failed: " . $conn->connect_error);
+}
 
 $handle = @fopen("pizze.txt", "r");
 if ($handle) {

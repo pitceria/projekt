@@ -8,7 +8,7 @@ class zamowienie{
     public $godzina_przyjecia;
     public $godzina_wydania;
     public $status;
- 
+    public $user_dane = array();
     
     // public $pizze_w_srodku =[];
     public $pizze_w_srodku  = array();
@@ -85,6 +85,25 @@ class zamowienie{
         
         
     // }
+    public function getuserdane(){
+        global $conn;
+        require_once('baza_danych.php');
+        $sqldaneuser = "select * from uzytkownicy where iduzytkownicy = ".$this->id_uzytkownika;
+        $bufor = $conn->query($sqldaneuser);
+        // var_dump($sqldaneuser);
+        // var_dump($bufor->fetch_all());
+        $tmpdane = $bufor->fetch_all()[0];
+        // var_dump($tmpdane);
+        echo "<br/>";
+        $this->user_dane[] = $tmpdane[1];
+        $this->user_dane[] = $tmpdane[2];
+        $this->user_dane[] = $tmpdane[3];
+        $this->user_dane[] = $tmpdane[4];
+        $this->user_dane[] = $tmpdane[5];
+        var_dump($this->user_dane);
+        echo "<br/>";
+
+    }
     public function wypiszzawartosc($czego="zawartosc"){
     
            
@@ -116,9 +135,28 @@ class zamowienie{
                 
         }
         }
+
+    
        
         
     }
+    function showinatable(){
+        ?>
+        <tr>
+      <th scope="row">5</th>
+    <td><?php echo $this->id_zamowienia;;?></td>
+     <td><?php echo $this->status;?></td>
+     <td><?php echo $this->id_uzytkownika;?></td>
+     <td><?php echo $this->data;?></td>
+     <td><?php echo $this->godzina_przyjecia;?></td>
+     <td><?php echo $this->godzina_wydania;?></td>
+
+    </tr>
+    <?php
+    }
+
+
+
 }
 
 	
