@@ -26,7 +26,12 @@ setkoszyk($_SESSION['iduzytkownicy']);
   <title></title>
   <meta name="description" content="">
   <meta name="author" content="">
-  
+  <!-- nie wiem czemu ale bez tego nie chce działać  nawigacja albo nie chce mi sie tego  sprawdzać może będzie bloated ale przynajmniej będzie działać -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- nie wiem czemu ale bez tego nie chce działać koniec  -->
 
 <!-- start bootstrap -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -50,8 +55,14 @@ setkoszyk($_SESSION['iduzytkownicy']);
 <body>
   <div class="container-fluid">
   <div class="row">
-    <a href='wyloguj.php'>wyloguj</a>
-    <a href='user_settings.php'>ustawienia</a>
+    <!-- <a href='wyloguj.php'>wyloguj</a>
+    <a href='user_settings.php'>ustawienia</a> -->
+    
+<!-- navabar -->
+<?php
+require_once('navbar.php');
+?>
+<!-- navbar -->
     <button id="koszykshowbtn" onclick="showkoszyk()"> Twój koszyk</button>
     
     
@@ -65,7 +76,7 @@ echo"<br/>";
 //   // echo $key." : ".serialize($value)."<br/>";
     
 // }
-echo "witaj ".$_SESSION['nick']." masz pewnie na imie ".$_SESSION['imie']." a nazwisko pewnie wymyśliłeś " .$_SESSION['nazwisko']." jedyny prawdziwy argument(adres) ".$_SESSION['adres']." z temp maila pewnie ".$_SESSION['email']." data ".$_SESSION['data_ur'];
+// echo "witaj ".$_SESSION['nick']." masz pewnie na imie ".$_SESSION['imie']." a nazwisko pewnie wymyśliłeś " .$_SESSION['nazwisko']." jedyny prawdziwy argument(adres) ".$_SESSION['adres']." z temp maila pewnie ".$_SESSION['email']." data ".$_SESSION['data_ur'];
 
 //pokaz wszyskie pizze 
 // require_once('baza_danych.php');
@@ -130,6 +141,11 @@ foreach ($bufor as $key => $value) {
   ?>
   <div class='pizza_container  col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2' onclick="choose(<?php echo $value['idpizza'] ?>)" id="<?php echo "id".$value['idpizza'];?>">
   <img src="http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/assety/zdjecia_pizzy/<?php echo $value['sciezka_zdjecie'];?>" alt="cos sie zdjecia nie wczytaly">
+  <!-- serwer -->
+  <!-- <img src="http://pitcernia.opole.pl/assety/zdjecia_pizzy/<?php
+  //  echo $value['sciezka_zdjecie'];
+   ?>" alt="cos sie zdjecia nie wczytaly"> -->
+   <!-- koniec serwer -->
   <span>
   <?php
  

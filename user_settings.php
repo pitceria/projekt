@@ -169,16 +169,27 @@ if ($isloggedin) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- nie wiem czemu ale bez tego nie chce działać nawigacja albo nie chce mi sie tego  sprawdzać może będzie bloated ale przynajmniej będzie działać -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- nie wiem czemu ale bez tego nie chce działać koniec  -->
     <link rel="stylesheet" href="css.css">
     <title>Document</title>
+
+
+
+    
 </head>
 
 <body>
-    <a href="user_panel.php">powrót do panelu </a><br />
-    <a href="wyloguj.php">wyloguj </a>
+    <!-- <a href="user_panel.php">powrót do panelu </a><br />
+    <a href="wyloguj.php">wyloguj </a> -->
     <?php
-    ?>
-
+    
+        require_once('navbar.php');
+?>
             <form action="user_settings.php?co=dane" method="POST">
                 <input value="<?php  echo $nick; ?>" type="text" name='nick' placeholder="wpisz imie"><br />
                 <input value="<?php echo $imie;?>" type="text" name='imie' placeholder="wpisz imie"><br />

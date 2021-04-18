@@ -4,7 +4,8 @@ var tlo = document.createElement('div');//tlo
  var panelDoInterakcji = document.createElement("div");//panel
  panelDoInterakcji.classList.add( "col-12", "col-sm-10","offset-sm-1","col-md-8","offset-md-2","col-lg-6","offset-lg-3")
  panelDoInterakcji.style.cssText = 'position:fixed;top:15vh;height:70vh;z-index:101;background:#fff;color:#000;';
- panelDoInterakcji.id="paneldointerakcji";
+ panelDoInterakcji.id="paneldointerakcjiadmin";
+ 
  
  var panelDointerakcjikrzyzykdozamykania  = document.createElement('div');//krzyzyk
  panelDointerakcjikrzyzykdozamykania.id ='panelDointerakcjikrzyzykdozamykania';
@@ -35,7 +36,7 @@ var tlo = document.createElement('div');//tlo
 
      $("#szukaj").keyup(function(){
         zapytanie();
-        console.log(range.noUiSlider.get())
+        // console.log(range.noUiSlider.get())
         
      });
 
@@ -64,3 +65,21 @@ function zapytanie(){
 function btnchngstateclicked(numerzam){
     console.log(numerzam);
 }
+
+function pokazzawartosczamowieniawadminpanelu(nrzamowienia){
+  console.log(nrzamowienia);
+pokazpanelinterakcji();
+pokazzamowienie(nrzamowienia);
+}
+function pokazzamowienie(id){
+  $.ajax({
+    url:'zamowieniewadminpanelu.php',
+    type:'post',
+    data:{nr:id},
+    success:function(result){
+      $("#paneldointerakcjiadmin").html(result);
+      
+    }
+});
+}
+

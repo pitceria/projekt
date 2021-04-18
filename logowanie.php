@@ -62,9 +62,11 @@ foreach ($checks as $key => $value) {
                 // var_dump($row);
                 if($row['is_admin']=='1'){
                     echo "jestes adminem <br/>";
+                    header('location:admin_panel.php');
                     ?>
-                    <a href="user_panel.php">idz do panelu uzytkownika</a><br/>
-                    <a href="admin_panel.php">idz do panelu administratora</a>
+                    <!-- <a href="user_panel.php">idz do panelu uzytkownika</a><br/>
+                    <a href="admin_panel.php">idz do panelu administratora</a> -->
+                    
                     <?php
 
                 }

@@ -24,8 +24,14 @@ elseif($_SESSION['isadmin']!=true){
   <title></title>
   <meta name="description" content="">
   <meta name="author" content="">
+<!-- nie wiem czemu ale bez tego nie chce działać  nawigacja albo nie chce mi sie tego  sprawdzać może będzie bloated ale przynajmniej będzie działać -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- nie wiem czemu ale bez tego nie chce działać koniec  -->
 
-  <link rel="stylesheet" href="css.css">
+ <link rel="stylesheet" href="css.css">
   <!-- start bootstrap -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -44,12 +50,13 @@ elseif($_SESSION['isadmin']!=true){
 </head>
 
 <body>
-  <a href="wyloguj.php">wyloguj sie </a><br/>
+  
 
-
-
-
-
+<!-- navabar -->
+<?php
+require_once('navbar.php');
+?>
+<!-- navbar -->
 <div class="container">
 <div class="row">
 <div id="warunkitabeli">
@@ -72,10 +79,17 @@ $mozliwe =["wszystkie","zamowione","wykonane"] ;
 foreach ($mozliwe as $key => $value) {
   echo"<option>".$value."</option>";
 }
+
 ?>
 </select>
-
-
+<select >
+<?php
+$mozliweprzedzialy =["dzis","miesiac","rok"] ;
+foreach ($mozliweprzedzialy as $key => $value) {
+  echo"<option>".$value."</option>";
+}
+?>
+</select>
 </div>
 </div>
 </div></div>
@@ -83,23 +97,100 @@ foreach ($mozliwe as $key => $value) {
 
 
 
-
- 
-  <div ></div>
-
   <div id="resultintable" class="table-responisve">
+  <?php
+  require_once('maxid.php');
+  require_once('baza_danych.php');
+  require_once('klasy.php');
+  $sqlobj = 'SELECT * FROM `zawartosc_zamowien_pizza`';
+$buforobj =$conn->query($sqlobj)->fetch_all();
+$objtab  = [];
+foreach ($buforobj as $key => $value) {
+    $tmpobj = new zamowienie($value[0],$value[1],$value[2],$value[3],$value[4],$value[5]);
+    $tmpobj->get_content();
+    $tmpobj->getuserdane();
+    $objtab[] = $tmpobj;
+}
+// var_dump($objtab);
+?>
+
+<div class="table-responsive">
+<table class="table table-dark ">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">id zamowienia</th>
+      <th scope="col">id_uzytkownika</th>
+
+      <th scope="col">nick</th>
+      <th scope="col">imie</th>
+      <th scope="col">nazwisko</th>
+      <th scope="col">adres</th>
+
+      <th scope="col">wartosc</th>
+      <th scope="col">ilosc pizz w środku</th>
   
-  
-  
-  
-  </div>
+      
+      <th scope="col">data</th>
+      <th scope="col">godzina przyjecia</th>
+      <th scope="col">godzina wykonania</th>
+    <th scope="col">zrobgotowe</th>
+      <th scope="col">status</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+    <?php 
+    foreach($objtab as $key =>$value){
+        ?>
+
+
+
+
+    <tr onclick="pokazzawartosczamowieniawadminpanelu(<?php echo $value->id_zamowienia; ?>)">
+      <th scope="row"><?php echo $key;?></th>
+      
+      <td><?php echo $value->id_zamowienia ;?></td>
+      <td><?php echo $value->id_uzytkownika ;?></td>
+
+      <td><?php echo $value->user_dane[0] ;?></td>
+      <td><?php echo $value->user_dane[1] ;?></td>
+      <td><?php echo $value->user_dane[2] ;?></td>
+      <td><?php echo $value->user_dane[3] ;?></td>
+      <td><?php echo $value->returnsumacenzamowien() ;?></td>
+      <td><?php echo count($value->pizze_w_srodku) ;?></td>
+
+      <td><?php echo $value->data ;?></td>
+      <td><?php echo $value->godzina_przyjecia ;?></td>
+      <td><?php echo $value->godzina_wydania ;?></td>
+      <td class="przyciskzmienstatus"><button  onclick="btnchngstateclicked(<?php echo $value->id_zamowienia; ?>)" <?php echo  $value->status==0 ?  "enabled" : "disabled"; ?>> zrobione</button></td>
+      <td><?php echo $value->status ;?></td>
+    </tr>
+
+        <?php
+    }
+    ?>
+
+
+   
+  </tbody>
+</table>
+
+</div>
+</div>
 
 
 
 
 
 
+<!-- start bootstrap -->
 
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js"></script>
+<!-- koniec bootstrap -->
 
 
 
