@@ -140,7 +140,9 @@ foreach ($rozmiary as $key => $value) {
 foreach ($bufor as $key => $value) {
   ?>
   <div class='pizza_container  col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2' onclick="choose(<?php echo $value['idpizza'] ?>)" id="<?php echo "id".$value['idpizza'];?>">
-  <img src="http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/assety/zdjecia_pizzy/<?php echo $value['sciezka_zdjecie'];?>" alt="cos sie zdjecia nie wczytaly">
+  <img src="http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/assety/zdjecia_pizzy/<?php 
+  echo $value['sciezka_zdjecie'];
+  ?>" alt="cos sie zdjecia nie wczytaly">
   <!-- serwer -->
   <!-- <img src="http://pitcernia.opole.pl/assety/zdjecia_pizzy/<?php
   //  echo $value['sciezka_zdjecie'];
@@ -149,13 +151,14 @@ foreach ($bufor as $key => $value) {
   <span>
   <?php
  
-  echo $value['idpizza']."<br/>";  
-   echo $value['nazwa']."<br/>";  
+  // echo $value['idpizza']."<br/>";  
+  echo $value['cena']."zł<br/>";
+   echo $value['nazwa']."(";  
   $tmp = dejson($value['skladniki_json']);
    foreach ($tmp as  $val) {
-     echo $val."<br/>";
+     echo $val.",";
    }
-   echo "rozmiar : ".$value['rozmiar'];  
+   echo ")<br/>rozmiar : ".$value['rozmiar'];  
   ?>
   </span>
 

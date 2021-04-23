@@ -69,8 +69,15 @@ foreach($valuestocheck as $key=>$value){
             //         }
             //     }
             //     echo"<br/>";
-
-                $warunki.=$wartosci_pizzy[$key]." like '%".$value."%' and ";
+                if($key==1){
+                    $tmpsklad = explode(".",$value);
+                    foreach($tmpsklad as $klucz=>$skladnik){
+                        $warunki.=$wartosci_pizzy[$key]." like '%".$skladnik."%'and ";
+                    }
+                }
+                else{
+                    $warunki.=$wartosci_pizzy[$key]." like '%".$value."%' and ";
+                }
                 $koniec=" 1=1)";
         }
   

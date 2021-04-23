@@ -44,38 +44,47 @@ function zapytanie(){
        $.ajax({
          url:'tabelawadminpanel.php',
          type:'post',
-         data:{search: $("#szukaj").val(),cenachck: $("#chckbx1").is(":checked"),cenamin:range.noUiSlider.get()[0],cenamax:range.noUiSlider.get()[1]},
+         data:{search: $("#szukaj").val(),cenachck: $("#chckbx1").is(":checked"),cenamin:range.noUiSlider.get()[0],cenamax:range.noUiSlider.get()[1],czas:$("#czasset").val(),stan:$("#stanset").val()},
          success:function(result){
            $("#resultintable").html(result);
            
          }
     });
 }
- function zmianastanuceny(){
-   let state = $("#chck3").is(":checked");
-   if(state){
-     range.removeAttribute('disabled');
-     
-   }else{
-     range.setAttribute('disabled', true);
-   }
- }
+
+
+
+range.setAttribute('disabled', true);//wyłączony na początku 
+ function cenachangestate(){
+  let state = $("#chckbx1").is(":checked");
+  
+  if(state){
+    range.removeAttribute('disabled');
+    
+  }else{
+    range.setAttribute('disabled', true);
+  }
+ 
+  
+
+}
  
 
-function btnchngstateclicked(numerzam){
-    console.log(numerzam);
-}
+// function btnchngstateclicked(numerzam){
+//     console.log(numerzam);
+// }
 
-function pokazzawartosczamowieniawadminpanelu(nrzamowienia){
+function pokazzawartosczamowieniawadminpanelu(nrzamowienia,status){
   console.log(nrzamowienia);
 pokazpanelinterakcji();
-pokazzamowienie(nrzamowienia);
+pokazzamowienie(nrzamowienia,status);
 }
-function pokazzamowienie(id){
+
+function pokazzamowienie(id,status){
   $.ajax({
     url:'zamowieniewadminpanelu.php',
     type:'post',
-    data:{nr:id},
+    data:{nr:id,status:status},
     success:function(result){
       $("#paneldointerakcjiadmin").html(result);
       
@@ -83,3 +92,24 @@ function pokazzamowienie(id){
 });
 }
 
+function zmienzamowieniewadminpanelu(cozrobic,komu){
+console.log(komu);
+
+$.ajax({
+  url:'zmianazamowienaadminpanel.php',
+  type:'post',
+  data:{nr:komu,co:cozrobic},
+  success:function(result){
+    // $("#paneldointerakcjiadmin").html(result);
+    
+    if(cozrobic!='usun'){
+      pokazzawartosczamowieniawadminpanelu(komu,1);
+    }else{
+      usunpanelinterakcji();
+    }
+    zapytanie();
+    
+  }
+});
+
+}

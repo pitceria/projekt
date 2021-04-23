@@ -102,35 +102,52 @@
          data:{search: $("#search").val(),skladnikichck: $("#chck1").is(":checked"),rozmiarchck: $("#chck2").is(":checked"),rozmiarset:$("#rozmiarset").val()},
          success:function(result){
            $("#paneldointerakcji").html(result);
+          widzizawartosc('tylkopokaz');
          }
        });
+        
  }
- 
+ pokazane =[];
  function widzizawartosc(idzamowienia){
-
-  //  let dozdjecia = document.querySelectorAll('.zawartosc');
+  if(idzamowienia!='tylkopokaz'){
    unikalnaklasa = '.x-' + idzamowienia;
-   console.log(unikalnaklasa);
-   let dopokazania =document.querySelectorAll(unikalnaklasa);
-  //  for(dozdj of dozdjecia){
-  //    dozdj.style.display = "none";
-  //  }
-   for(dopokaz of dopokazania){
-     console.log(dopokaz.style.display);
-     if(dopokaz.style.display != "block"){
-      dopokaz.style.display = "block";
+
+   let zawartosc =document.querySelectorAll(unikalnaklasa);
+   for(dopokaz of zawartosc){
+    
+     if(pokazane.indexOf("."+dopokaz.classList[1])==-1){
+      pokazane.push(unikalnaklasa);
+      break;
      }
      else{
-       dopokaz.style.display ="none";
-     }
-     console.log(dopokaz.style.display);
-
+       console.log(pokazane.indexOf("."+dopokaz.classList[1]))
+       //splicem nie działa xddddddddddddddddddddddddddddddddddddddddd
+      // pokazane.splice(unikalnaklasa,1);
+      pokazane = pokazane.filter((value,index,arr)=>{
+        return value!=unikalnaklasa;
+      })
+      break;
+     } 
+     
    }
 
 
 
+}
+ console.log(pokazane);
+console.log(idzamowienia);
+for(x of document.querySelectorAll(".zawartosc")){
+  if(pokazane.indexOf("."+x.classList[1])!=-1){
+    x.style.display ="block";
+  }
+  else{
+    x.style.display="none";
+  }
+ 
    
  }
+ }
+
  //zmienia
  function zmianazawartosci(co,komu){
  
@@ -164,11 +181,11 @@ ktonagorze = 'nowe';
 
      if(jakie == 'nowe'){
          ktonagorze = 'nowe';
-         console.log(ktonagorze);
+        //  console.log(ktonagorze);
      }
      else{
          ktonagorze = 'stare';
-         console.log(ktonagorze);
+        //  console.log(ktonagorze);
      }
 
 

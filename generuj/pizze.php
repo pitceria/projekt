@@ -92,7 +92,7 @@ if ($handle) {
             // $json = "'".base64_encode(serialize($arr2))."'";
             $json = "'".serialize($arr2)."'";
             print_r($json);
-            $cena = $i*5+10.5;
+            $cena = $i*5+10.5+rand(1,10);
             $rozmiar = "'".$tablica[$i]."'";
             $nazwa = "'".$arr[0]."'";
             $sciezka = "'".$pizzacount.".jpg'";

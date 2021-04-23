@@ -67,7 +67,7 @@ class zamowienie{
             <div class='imabeautifulldiv' onclick='widzizawartosc(<?php echo $this->id_zamowienia?>)'> 
             <?php  
              echo ' suma zawartości  : '.$this->returnsumacenzamowien()." zł ". " ilosc pizz w srodku ".count($this->pizze_w_srodku); 
-            //  print_r($this->pizze_w_srodku);
+            
             ?>
           
             </div>
@@ -94,14 +94,14 @@ class zamowienie{
         // var_dump($bufor->fetch_all());
         $tmpdane = $bufor->fetch_all()[0];
         // var_dump($tmpdane);
-        echo "<br/>";
+        // echo "<br/>";
         $this->user_dane[] = $tmpdane[1];
         $this->user_dane[] = $tmpdane[2];
         $this->user_dane[] = $tmpdane[3];
         $this->user_dane[] = $tmpdane[4];
         $this->user_dane[] = $tmpdane[5];
-        var_dump($this->user_dane);
-        echo "<br/>";
+        // var_dump($this->user_dane);
+        // echo "<br/>";
 
     }
     public function wypiszzawartosc($czego="zawartosc"){
@@ -198,7 +198,10 @@ class zawartosc{
         ?>
         <div class ='zawartosc x-<?php echo $this->idzamowienia;?> clearfix  '><div>
         <img class="rounded float-left" src ="assety\zdjecia_pizzy/<?php echo $this->sciezka_zdjecie; ?>">
-        <p class='text-muted'>zamowienie nr <?php echo $this->idpizzy.' ile: '.$this->ilosc.'opis :'.$this->dodatkowe_informacje.' nazwa :'.$this->nazwa.' lista skladnikow'.join($this->skladniki_json,",").' cena jednostkowa '.$this->cena.' rozmiar'.$this->rozmiar.' opis :'.$this->opis.' id: '.$this->id_pk?></p>
+        <!-- <p class='text-muted'>zamowienie nr <?php
+        //  echo $this->idpizzy.' ile: '.$this->ilosc.'opis :'.$this->dodatkowe_informacje.' nazwa :'.$this->nazwa.' lista skladnikow'.join($this->skladniki_json,",").' cena jednostkowa '.$this->cena.' rozmiar'.$this->rozmiar.' opis :'.$this->opis.' id: '.$this->id_pk
+         ?></p> -->
+         <p class='text-muted'> <?php echo $this->nazwa.'('.join($this->skladniki_json,",").') ile: '.$this->ilosc.' '.$this->cena.'zł dodatkowe informacje : '.$this->dodatkowe_informacje .' ('.$this->rozmiar.') '?></p>
         <button onclick="zmianazawartosci('dodaj','<?php echo $this->id_pk?>')">+</button>
         <button onclick="zmianazawartosci('odejmij','<?php echo $this->id_pk?>')">-</button>
         <button onclick="zmianazawartosci('usun','<?php echo $this->id_pk?>')">usun</button>
@@ -213,7 +216,7 @@ class zawartosc{
             ?>
             <div class ='zawartosc x-<?php echo $this->idzamowienia;?> clearfix  '><div>
             <img class="rounded float-left" src ="assety\zdjecia_pizzy/<?php echo $this->sciezka_zdjecie; ?>">
-            <p class='text-muted'>zamowienie nr <?php echo $this->idpizzy.' ile: '.$this->ilosc.'opis :'.$this->dodatkowe_informacje.' nazwa :'.$this->nazwa.' lista skladnikow'.join($this->skladniki_json,",").' cena jednostkowa '.$this->cena.' rozmiar'.$this->rozmiar.' opis :'.$this->opis.' id: '.$this->id_pk?></p>
+            <p class='text-muted'> <?php echo $this->nazwa.'('.join($this->skladniki_json,",").') ile: '.$this->ilosc.' '.$this->cena.'zł dodatkowe informacje : '.$this->dodatkowe_informacje .' ('.$this->rozmiar.') '?></p>
             </div>
             </div>
 

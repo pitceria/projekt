@@ -64,7 +64,8 @@ require_once('navbar.php');
   <label><input type="text" id="szukaj"placeholder="nazwy oddzielane przecinkami "></label>
 </div>
 <div class="col-12 col-sm-6">
-  <label><input type="checkbox" id="chckbx1" onchange="zapytanie();zmianastanuceny()" checked="checked">cena</label>
+  <!-- <label><input type="checkbox" id="chckbx1" onchange="zapytanie();cenachangestate()" checked="checked">cena</label> -->
+  <label><input type="checkbox" id="chckbx1" onchange="zapytanie();cenachangestate()" >cena</label>
 </div>
 <div class="col-12 col-sm-6">
   <div id="range" ></div>
@@ -73,16 +74,17 @@ require_once('navbar.php');
   <label id="upper-value">300 zł</label>
 </div>
 <div class="col-12 col-sm-6">
-<select name="rozmiar" id="rozmiarset" onchange="zapytanie()">
+<select name="rozmiar" id="stanset" onchange="zapytanie()">
 <?php
-$mozliwe =["wszystkie","zamowione","wykonane"] ;
+$mozliwe =["wszystkie","zamowione(0)","wykonane(1)"] ;
 foreach ($mozliwe as $key => $value) {
   echo"<option>".$value."</option>";
 }
 
 ?>
 </select>
-<select >
+<select id="czasset"  onchange="zapytanie()">
+<option>wszystkie</option>
 <?php
 $mozliweprzedzialy =["dzis","miesiac","rok"] ;
 foreach ($mozliweprzedzialy as $key => $value) {
@@ -105,12 +107,15 @@ foreach ($mozliweprzedzialy as $key => $value) {
   $sqlobj = 'SELECT * FROM `zawartosc_zamowien_pizza`';
 $buforobj =$conn->query($sqlobj)->fetch_all();
 $objtab  = [];
+$suma = 0;
 foreach ($buforobj as $key => $value) {
     $tmpobj = new zamowienie($value[0],$value[1],$value[2],$value[3],$value[4],$value[5]);
     $tmpobj->get_content();
     $tmpobj->getuserdane();
     $objtab[] = $tmpobj;
+    $suma+=$tmpobj->returnsumacenzamowien();
 }
+
 // var_dump($objtab);
 ?>
 
@@ -134,7 +139,7 @@ foreach ($buforobj as $key => $value) {
       <th scope="col">data</th>
       <th scope="col">godzina przyjecia</th>
       <th scope="col">godzina wykonania</th>
-    <th scope="col">zrobgotowe</th>
+    <!-- <th scope="col">zrobgotowe</th> -->
       <th scope="col">status</th>
     </tr>
   </thead>
@@ -148,7 +153,7 @@ foreach ($buforobj as $key => $value) {
 
 
 
-    <tr onclick="pokazzawartosczamowieniawadminpanelu(<?php echo $value->id_zamowienia; ?>)">
+    <tr onclick="pokazzawartosczamowieniawadminpanelu(<?php echo $value->id_zamowienia; ?>,<?php echo $value->status;?> )">
       <th scope="row"><?php echo $key;?></th>
       
       <td><?php echo $value->id_zamowienia ;?></td>
@@ -157,27 +162,37 @@ foreach ($buforobj as $key => $value) {
       <td><?php echo $value->user_dane[0] ;?></td>
       <td><?php echo $value->user_dane[1] ;?></td>
       <td><?php echo $value->user_dane[2] ;?></td>
-      <td><?php echo $value->user_dane[3] ;?></td>
+      <td><?php echo $value->user_dane[4] ;?></td>
       <td><?php echo $value->returnsumacenzamowien() ;?></td>
       <td><?php echo count($value->pizze_w_srodku) ;?></td>
 
       <td><?php echo $value->data ;?></td>
       <td><?php echo $value->godzina_przyjecia ;?></td>
-      <td><?php echo $value->godzina_wydania ;?></td>
-      <td class="przyciskzmienstatus"><button  onclick="btnchngstateclicked(<?php echo $value->id_zamowienia; ?>)" <?php echo  $value->status==0 ?  "enabled" : "disabled"; ?>> zrobione</button></td>
+      
+      <td><?php echo $value->godzina_wydania=="00:00:00"?  "nie wydano" :$value->godzina_wydania  ;?></td>
+      <!-- <td class="przyciskzmienstatus"><button  onclick="btnchngstateclicked(<?php
+      //  echo $value->id_zamowienia; ?>)" <?php 
+      // echo  $value->status==0 ?  "enabled" : "disabled";
+        ?>> zrobione</button></td> -->
       <td><?php echo $value->status ;?></td>
     </tr>
 
         <?php
     }
+   
     ?>
 
 
    
   </tbody>
 </table>
-
+<?php
+ if(count($objtab) == 0){
+      echo "tu miały być zamówienia ale za mało zainwestowaliście w marketing i nic tu nie ma :(";
+    }
+    ?>
 </div>
+<div class="divsumacenadminwybrane"><?php echo $suma;?></div>
 </div>
 
 
@@ -211,6 +226,7 @@ foreach ($buforobj as $key => $value) {
         // step:0.5,laguje
         step:1,
         connect: true,
+        
         range: {
         'min': 0,
         'max':1000

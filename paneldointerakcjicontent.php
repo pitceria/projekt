@@ -36,22 +36,20 @@
         <span>
         <?php
          
-        echo "pizza nr :".$value['idpizza']."<br/>";  
-         echo $value['nazwa']."<br/>";  
-         echo"składniki: <br/>";
-         
+       
+         echo $value['nazwa']."(";           
         $tmp = dejson($value['skladniki_json']);
          foreach ($tmp as  $val) {
-           echo $val."<br/>";
+           echo $val.",";
          }
-         echo "rozmiar : ".$value['rozmiar']."<br/>"; 
+         echo ") <br/>rozmiar : ".$value['rozmiar']."<br/>"; 
           echo $value['opis']."<br/>";
         ?>
         </span>
-       <input type="number" value="1" min="1" id="ilosc"/>
-       <input type="textarea" id="opis"/>
+       <label >ilość<input type="number" value="1" min="1" id="ilosc"/></label>
+        <input type="textarea" placeholder ="opis" id="opis"/>
        
-       <select name="nr koszyka" id="koszykwybor">
+       <label >koszyk<select name="nr koszyka" id="koszykwybor">
        
        <?php
  
@@ -62,7 +60,7 @@
        
        }
        ?><option >nowy koszyk</option>
-      </select>
+      </select></label>
        <button id="btndodajdokoszyka">dodaj do koszyka</button>
       <?php
 }
