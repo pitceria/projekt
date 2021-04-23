@@ -130,7 +130,7 @@ $sumazmienna=0
 
       <td><?php echo $value->data ;?></td>
       <td><?php echo $value->godzina_przyjecia ;?></td>
-      <td><?php echo $value->godzina_wydania ;?></td>
+      <td><?php echo $value->godzina_wydania=="00:00:00"?  "nie wydano" :$value->godzina_wydania  ;?></td>
       <!-- <td class="przyciskzmienstatus"><button  onclick="btnchngstateclicked(<?php 
       // echo $value->id_zamowienia; ?>)" <?php 
       // echo $value->status==0 ?  "enabled" : "disabled";

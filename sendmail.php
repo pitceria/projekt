@@ -18,7 +18,7 @@ function sendmail($do_kogo,$co){
     // $kod = $_SESSION['verificode'];
     // $link = "<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=$kod'>link do weryfikacji</a>";
     $link = $co;
-    $tresc = $link;
+    $tresc =  "to jest twoj link".$link;
     $temat = ' wiadomość od   nalepszej pizzeri w mieście';
     
     date_default_timezone_set('Europe/Warsaw');
@@ -47,11 +47,12 @@ function sendmail($do_kogo,$co){
     
      $mail->send();
     
-    // header('location:index.php');
+    header('location:index.php');
     
     } catch (Exception $e) {
-    $_SESSION['error'] = $e;
-    echo 'źle';
+    // $_SESSION['error'] = $e;
+    echo $e;
+    // echo 'źle';
     }
 }
 
