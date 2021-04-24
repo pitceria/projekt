@@ -58,7 +58,7 @@ if(isset($_GET['cel'])){
     require_once("walidacja.php");
     sprawdz_zmiany('haslo',"weryfikacja.php?vkey=".$_SESSION['verifikey']."&cel=zmianahasla");
     $sqlzmianahaslamail = "update uzytkownicy set haslo='".md5($haslo)."' where verification_key='".$_SESSION['verifikey']."'";
-    var_dump($sqlzmianahaslamail);
+    // var_dump($sqlzmianahaslamail);
     $conn->query($sqlzmianahaslamail);
     $_SESSION['messege'] = "wszystko jest dobrze twoje haslo zostanie zmienione ";
     header('location:index.php');

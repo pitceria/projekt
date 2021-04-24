@@ -29,7 +29,7 @@ function sendmail($do_kogo,$co){
      $mail->Host = 'smtp.gmail.com';
      $mail->SMTPAuth = true; 
      $mail->Username = "projektpitcernia@gmail.com"; 
-     $mail->Password = "ZAQ!2wsx"; 
+     $mail->Password = "E+P^hPd34%"; 
      $mail->SMTPSecure = 'tls'; 
      $mail->Port = 587; 
     

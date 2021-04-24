@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-var_dump($_SESSION);
+// var_dump($_SESSION);
 if (isset($_SESSION['error'])) {
   echo $_SESSION['error'];
   unset($_SESSION['error']);
@@ -26,6 +26,8 @@ unset($_SESSION['nowy_mail']);
 unset($_SESSION['cel']);
 unset($_SESSION['verifikey']);
 unset($_SESSION['koszyk']);
+unset($_SESSION['test']);
+unset($_SESSION['isadmin']);
 ?>
 <!doctype html>
 
