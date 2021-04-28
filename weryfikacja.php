@@ -36,7 +36,11 @@ if(isset($_GET['cel'])){
     $verifikey = $_GET['vkey']; 
     $_SESSION['verifikey'] = $verifikey;
     $_SESSION['cel'] ="zmianahasla2";
+    //nietestowane
+    require_once("maxid.php");
+    showerrorormessege();
     ?>
+    
    <form action="weryfikacja.php" method="POST">
     <input type="password" name="haslo" placeholder="nowe haslo">
     <input type="password" name="haslo2" placeholder="powtorz nowe haslo">
@@ -102,4 +106,20 @@ elseif(isset($_GET['vkey'])){
 
 
 ?>
+
+<!-- nietstowane -->
+<script>
+	let tmperrorbox = document.querySelector(".errorbox")
+	let tmpmessegebox = document.querySelector(".messegebox")
+	setTimeout(() => {
+		try{
+			tmperrorbox.remove();
+			tmpmessegebox.remove();
+		}
+		catch{
+			// console.log("xderror");
+		}
+	}, 5000);
+
+</script>
 

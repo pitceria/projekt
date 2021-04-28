@@ -63,7 +63,8 @@ setkoszyk($_SESSION['iduzytkownicy']);
 require_once('navbar.php');
 ?>
 <!-- navbar -->
-    <button id="koszykshowbtn" onclick="showkoszyk()"> Twój koszyk</button>
+<!-- przycisk koszyk przeniesiony do navbara -->
+    <!-- <button id="koszykshowbtn" onclick="showkoszyk()"> Twój koszyk</button> -->
     
     
 <?php 
@@ -144,7 +145,12 @@ foreach ($bufor as $key => $value) {
   // echo $value['sciezka_zdjecie'];
   ?>" alt="cos sie zdjecia nie wczytaly"> -->
   <!-- serwer -->
-  <img src="http://pitcernia.opole.pl/assety/zdjecia_pizzy/<?php
+  <!-- <img src="http://pitcernia.opole.pl/assety/zdjecia_pizzy/<?php
+  //  echo $value['sciezka_zdjecie'];
+   ?>" alt="cos sie zdjecia nie wczytaly"> -->
+   <!-- koniec serwer -->
+    <!-- serwer -->
+  <img src="assety/zdjecia_pizzy/<?php
    echo $value['sciezka_zdjecie'];
    ?>" alt="cos sie zdjecia nie wczytaly">
    <!-- koniec serwer -->

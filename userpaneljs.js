@@ -103,6 +103,8 @@
          success:function(result){
            $("#paneldointerakcji").html(result);
           widzizawartosc('tylkopokaz');
+          document.querySelector("#btnprzelaczniknava").classList.add("collapsed");
+          document.querySelector("#mainmenu").classList.remove("show")
          }
        });
         
@@ -201,3 +203,5 @@ ktonagorze = 'nowe';
      }
 
  }
+ console.log("user działa")
+ 

@@ -86,6 +86,21 @@ $sumazmienna=0
           $warunki[] = date_diff(date_create(date('Y-m-d',strtotime($value->data))),date_create(date('Y-m-d')),true)->m <1;
          
           break;
+          case 'miesiac-kalendarz':
+          
+            // $warunki[] = date('m',strtotime($value->data)) == date('m');
+            // var_dump($value->data);
+            $warunki[] = date('m',strtotime($value->data))==date('m') ;
+           
+            break;
+
+            case 'rok-kalendarz':
+          
+              // $warunki[] = date('m',strtotime($value->data)) == date('m');
+              // var_dump($value->data);
+              $warunki[] = date('Y',strtotime($value->data))==date('Y') ;
+             
+              break;
         case 'rok':
           // $warunki[] = date('Y',strtotime($value->data)-date('Y-m-d')) == date('Y');
           $warunki[] = date_diff(date_create(date('Y-m-d',strtotime($value->data))),date_create(date('Y-m-d')),true)->y <1;
@@ -147,7 +162,7 @@ $sumazmienna=0
    
   </tbody>
 </table>
-<div class="divsumacenadminwybrane"><?php echo $sumazmienna;?></div>
+<div class="divsumacenadminwybrane">suma wartości zamówień spełniających podane kryteria : <?php echo $sumazmienna;?></div>
 
 <?php
  if(count($objtab) == 0){

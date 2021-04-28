@@ -31,6 +31,7 @@ elseif($_SESSION['isadmin']!=true){
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <!-- nie wiem czemu ale bez tego nie chce działać koniec  -->
 
+
  <link rel="stylesheet" href="css.css">
   <!-- start bootstrap -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,7 +87,7 @@ foreach ($mozliwe as $key => $value) {
 <select id="czasset"  onchange="zapytanie()">
 <option>wszystkie</option>
 <?php
-$mozliweprzedzialy =["dzis","miesiac","rok"] ;
+$mozliweprzedzialy =["dzis","miesiac","miesiac-kalendarz","rok","rok-kalendarz"] ;
 foreach ($mozliweprzedzialy as $key => $value) {
   echo"<option>".$value."</option>";
 }
@@ -192,12 +193,12 @@ foreach ($buforobj as $key => $value) {
     }
     ?>
 </div>
-<div class="divsumacenadminwybrane"><?php echo $suma;?></div>
+<div class="divsumacenadminwybrane">suma wartości wszystkich zamowien <?php echo $suma;?></div>
 </div>
 
 
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 
 <!-- start bootstrap -->
@@ -211,12 +212,8 @@ foreach ($buforobj as $key => $value) {
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <!-- <script src="js/scripts.js"></script> -->
-  <script src="adminpaneljs.js">
-
-
-
-
-  </script>
+  
+  <script src="adminpaneljs.js">  </script>
   <script>
     var range = document.querySelector('#range');
     console.log("slider");
@@ -245,5 +242,6 @@ range.noUiSlider.on('set', function (values, handle, unencoded, isTap, positions
     nodes[handle].innerHTML = values[handle] +" zł" ;
 });
 </script>
+
 </body>
 </html>

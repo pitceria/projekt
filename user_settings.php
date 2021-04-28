@@ -6,16 +6,17 @@ require_once("baza_danych.php");
 $tmp = $_SESSION['iduzytkownicy'];
 $sqluser_settings = "SELECT iduzytkownicy,nick,imie,email,nazwisko,data_urodzenia,adres,is_verified,verification_key from uzytkownicy where iduzytkownicy = $tmp";
 $user_dane = $conn->query($sqluser_settings)->fetch_assoc();
+require_once("maxid.php");
 
+// if (isset($_SESSION['error'])) {
+//     echo $_SESSION['error'];
+//     unset($_SESSION['error']);
+// } elseif (isset($_SESSION['messege'])) {
+//     echo $_SESSION['messege'];
+//     unset($_SESSION['messege']);
+// }
 
-if (isset($_SESSION['error'])) {
-    echo $_SESSION['error'];
-    unset($_SESSION['error']);
-} elseif (isset($_SESSION['messege'])) {
-    echo $_SESSION['messege'];
-    unset($_SESSION['messege']);
-}
-
+// showerrorormessege();
 
 
 $iduzytkownika = $user_dane['iduzytkownicy'];
@@ -226,8 +227,8 @@ if ($isloggedin) {
         
             <form action="user_settings.php?co=usun" method="post">
                 <span>usun konto:</span></br>
-                <span>potwierdz</span>
-                <input type="text" name="potwierdz">
+                <!-- <span>potwierdz</span> -->
+                <input type="text" name="potwierdz" placeholder="potwierdź">
                 <input type="submit">
             </form>
         
@@ -236,7 +237,7 @@ if ($isloggedin) {
 
 
 
-
+            <script src="userpaneljs.js"></script>
 </body>
 
 </html>

@@ -2,10 +2,40 @@ body{
     background-color: #535663;
     color: white ;
     padding-top: 55px;
+        
     
 }
 input{
-    background-color: #e2faff ;
+    background-color: #464444 ;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    margin: 2px;
+    width: 200px;
+}
+input[type=submit]{
+    background-color: #0069ed;
+    width: auto;
+}
+input[type=text],input[type=date]{
+    height: 35px;
+    
+}
+input[type=checkbox]{
+    width: auto;
+}
+input[type=password]{
+    background-color: #282846 ;
+}
+input[type=email]{
+    background-color: #28463c ;
+}
+::placeholder{
+    color: whitesmoke;
+    opacity: 0.4;
+}
+#mainmenu{
+    text-align: center;
 }
 /* button{
     background-color: #42a2f0;
@@ -39,8 +69,9 @@ a{
     border-radius: 15px;
 }
 .divyprzyrejestracji{
-    background-color: rgb(75, 224, 187);
+    background-color: rgba(75, 224, 187, 0.72);
     border-radius: 15px;
+    text-align: center;
 }
 .divyprzyrejestracji input{
     width: 100%;
@@ -112,11 +143,11 @@ a{
 .zawartosc{
     background-color: rgb(21, 202, 109);
     margin:5px auto;
-    width: 98%;
+    width: 100%;
     display: none;
 }
 #paneldointerakcjiadmin .zawartosc{
-    background-color:rgb(21, 202, 109)
+    background-color:rgb(21, 202, 109);
     margin:5px auto;
     width: 100%;
     display: block;
@@ -125,20 +156,36 @@ a{
 }
 #paneldointerakcjiadmin{
     overflow: scroll;
-    padding:0 0 0 5px;
+    padding:0 0 0 0px;
 }
 #koszykprzedstawienie{
+    line-height: 50px;
     text-align: center;
     font-size: large;
     background-color: rgb(30, 220, 169);
     border-radius: 5px;
+    height: 50px;
+    color: white;
+    /* unselectable */
+    -webkit-user-select: none; /* Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
+ /* unselectable */
 }
 #dawnezamowienia{
+    line-height: 50px;
     text-align: center;
     font-size: large;
     background-color: rgb(0, 53, 228);
     
     border-radius: 5px;
+    height: 50px;
+    color: white;
+    -webkit-user-select: none; /* Safari */        
+-moz-user-select: none; /* Firefox */
+-ms-user-select: none; /* IE10+/Edge */
+user-select: none; /* Standard */
 }
 .zawartosc img {
     /* width: 40% !important; */
@@ -146,6 +193,7 @@ a{
     display: block;
     max-width: 50%;
     float: left;
+    border-radius: 15px;
     
 
 }
@@ -226,4 +274,34 @@ button:disabled{
 }
 #koszykshowbtn{
     height: 40px  ;
+    background-color: none;
+}
+.errorbox{
+    background-color: rgba(255, 0, 0, 0.741);
+    text-align: center;
+    font-size: large;
+}
+.messegebox{
+    background-color: rgb(9, 187, 15);
+    text-align: center;
+    font-size: large;
+}
+.divsumacenadminwybrane{
+    text-align: center;
+    background-color:#383a43 ;
+}
+#opiszawartoscizamowieniawadminpanelu{
+    text-align: center;
+    background-color: crimson;
+    color: white;
+}
+#zamowieniehistorycznewadminpanelu{
+    text-align: center;
+    background-color: darkblue;
+    color: white;
+}
+#adresdostawyzamowieniawadminpanelu{
+    text-align: center;
+    background-color: rgb(159, 33, 201);
+    color: white;
 }

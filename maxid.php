@@ -26,7 +26,26 @@ function wypaddoindexuerror($error_wiadomosc){
     header('location:index.php');
     exit();
   } 
+function showerrorormessege(){
+    ?>
+    
+    <?php
 
+    if (isset($_SESSION['error'])) {
+        echo "<div class='errorbox'>";
+        echo $_SESSION['error'];
+        unset($_SESSION['error']);
+        echo '</div>';
+    } elseif (isset($_SESSION['messege'])) {
+        echo "<div class='messegebox'>";
+        echo $_SESSION['messege'];
+        unset($_SESSION['messege']);
+        echo '</div>';
+    }
+    ?>
+    
+    <?php
+}
 
 
 ?>

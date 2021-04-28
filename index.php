@@ -1,14 +1,17 @@
 <?php
 session_start();
-
+require_once("maxid.php");
 // var_dump($_SESSION);
-if (isset($_SESSION['error'])) {
-  echo $_SESSION['error'];
-  unset($_SESSION['error']);
-} elseif (isset($_SESSION['messege'])) {
-  echo $_SESSION['messege'];
-  unset($_SESSION['messege']);
-}
+// if (isset($_SESSION['error'])) {
+//   echo $_SESSION['error'];
+//   unset($_SESSION['error']);
+// } elseif (isset($_SESSION['messege'])) {
+//   echo $_SESSION['messege'];
+//   unset($_SESSION['messege']);
+// }
+showerrorormessege();
+
+
 unset($_SESSION['iduzytkownicy']);
 unset($_SESSION['nick']);
 unset($_SESSION['email']);
@@ -55,12 +58,13 @@ unset($_SESSION['isadmin']);
 
 <body>
   
+  
     <div class="container">
       <div class = "row"> 
 
     
       <div class="divyprzyrejestracji col-12 col-sm-12 col-md-5   offset-lg-1 ">
-          <p>logowanie:</p>
+          <p>Logowanie</p>
           <form action="logowanie.php" method="POST">
             <input type='email' name='email' placeholder="wpisz email "><br />
             <input type='password' name='haslo' placeholder="wpisz haslo"><br />
@@ -69,7 +73,7 @@ unset($_SESSION['isadmin']);
           </form>
         </div>
         <div class="divyprzyrejestracji col-12 col-sm-12 col-md-5   offset-md-1">
-          <p>rejestracja:</p>
+          <p>Rejestracja</p>
           <form action="rejestracja.php" method="POST">
             <input type="text" name='nick' placeholder="wpisz nick"><br />
             <input type="text" name='imie' placeholder="wpisz imie"><br />
@@ -101,6 +105,26 @@ unset($_SESSION['isadmin']);
 <!-- koniec bootstrap -->
 
   <script src="js.js"></script>
+  <script>
+	let tmperrorbox = document.querySelector(".errorbox")
+	let tmpmessegebox = document.querySelector(".messegebox")
+	setTimeout(() => {
+		try{
+      try{
+        tmperrorbox.remove();
+      }
+      catch{
+        tmpmessegebox.remove();
+      }
+			
+			
+		}
+		catch(xd){
+			console.log(xd);
+		}
+	}, 5000);
+
+</script>
 </body>
 
 </html>

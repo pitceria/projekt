@@ -1,3 +1,4 @@
+
 var tlo = document.createElement('div');//tlo 
  tlo.style.cssText = 'position:fixed;top:0;width:100%;height:100vh;opacity:0.3;z-index:100;background:#000;';
  tlo.id="tlo";
@@ -113,3 +114,116 @@ $.ajax({
 });
 
 }
+
+
+function showkoszyk(){
+  pokazpanelinterakcji();
+  $.ajax({
+        url:'koszykinterakcja.php',
+        type:'post',
+        //zeby sie pozniej nie zastanawiac te zmienne sa bez znaczenia raczej i zostaly po przekopiowaniu :)
+        data:{search: $("#search").val(),skladnikichck: $("#chck1").is(":checked"),rozmiarchck: $("#chck2").is(":checked"),rozmiarset:$("#rozmiarset").val()},
+        success:function(result){
+          $("#paneldointerakcjiadmin").html(result);
+         widzizawartosc('tylkopokaz');
+         document.querySelector("#btnprzelaczniknava").classList.add("collapsed");
+         document.querySelector("#mainmenu").classList.remove("show")
+        }
+      });
+       
+}
+pokazane =[];
+function widzizawartosc(idzamowienia){
+ if(idzamowienia!='tylkopokaz'){
+  unikalnaklasa = '.x-' + idzamowienia;
+
+  let zawartosc =document.querySelectorAll(unikalnaklasa);
+  for(dopokaz of zawartosc){
+   
+    if(pokazane.indexOf("."+dopokaz.classList[1])==-1){
+     pokazane.push(unikalnaklasa);
+     break;
+    }
+    else{
+      console.log(pokazane.indexOf("."+dopokaz.classList[1]))
+      //splicem nie działa xddddddddddddddddddddddddddddddddddddddddd
+     // pokazane.splice(unikalnaklasa,1);
+     pokazane = pokazane.filter((value,index,arr)=>{
+       return value!=unikalnaklasa;
+     })
+     break;
+    } 
+    
+  }
+
+
+
+}
+// console.log(pokazane);
+// console.log(idzamowienia);
+for(x of document.querySelectorAll(".zawartosc")){
+ if(pokazane.indexOf("."+x.classList[1])!=-1){
+   x.style.display ="block";
+ }
+ else{
+   x.style.display="none";
+ }
+
+  
+}
+}
+
+//zmienia
+function zmianazawartosci(co,komu){
+
+  $.ajax({
+        url:'zmianywkoszyku.php',
+        type:'post',
+        data:{todo:co,towho:komu},
+        success:function(result){
+          // $("#paneldointerakcji").html(result);
+          showkoszyk();
+        }
+      });
+
+}
+function usunzamowienie(ktore){
+  $.ajax({
+        url:'zmianywkoszyku.php',
+        type:'post',
+        data:{zamid:ktore},
+        success:function(result){
+          $("#paneldointerakcjiadmin").html(result);
+          showkoszyk();
+        }
+      });
+}
+
+ktonagorze = 'nowe';
+function zmienwidokzamowien(jakie){
+   let starediv = document.querySelector("#starezam") 
+   let nowediv = document.querySelector("#nowezam");
+
+    if(jakie == 'nowe'){
+        ktonagorze = 'nowe';
+       //  console.log(ktonagorze);
+    }
+    else{
+        ktonagorze = 'stare';
+       //  console.log(ktonagorze);
+    }
+
+
+    if(ktonagorze =="nowe"){
+       starediv.style.display = 'none';
+       nowediv.style.display = 'block';
+       // nowediv.style.backgroundColor = 'yellow';//to nie jest ładne tylko zeby pokazac ze mozna
+       
+    }
+    else{
+       starediv.style.display = 'block';
+       nowediv.style.display = 'none';
+    }
+
+}
+console.log("user działa")
