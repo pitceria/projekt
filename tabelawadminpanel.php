@@ -54,14 +54,16 @@ $sumazmienna=0
     <?php 
   // var_dump($_POST);
     foreach($objtab as $key =>$value){
-      
+      // var_dump($value);
       $warunki=[];
       if(strlen($_POST['search'])>0){
       $tabsearchexploded = explode(",",$_POST['search']);
       $czyjest = 0;
       foreach ($tabsearchexploded as $sprawdz) {
        foreach ($value->user_dane as $nazwaatr => $wartoscatr) {
-         if(strpos($wartoscatr,$sprawdz)!==false ){
+         
+        
+         if($sprawdz!="" && strpos($wartoscatr,$sprawdz)!==false ){
           $czyjest++;
          }
        }
