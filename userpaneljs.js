@@ -4,7 +4,7 @@
  tlo.id="tlo";
  var panelDoInterakcji = document.createElement("div");//panel
  panelDoInterakcji.classList.add( "col-12", "col-sm-10","offset-sm-1","col-md-8","offset-md-2","col-lg-6","offset-lg-3")
- panelDoInterakcji.style.cssText = 'position:fixed;top:15vh;height:70vh;z-index:101;background:#fff;color:#000;';
+ panelDoInterakcji.style.cssText = 'position:fixed;top:15vh;height:70vh;z-index:101;';
  panelDoInterakcji.id="paneldointerakcji";
  
  var panelDointerakcjikrzyzykdozamykania  = document.createElement('div');//krzyzyk

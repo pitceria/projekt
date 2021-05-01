@@ -198,41 +198,53 @@ if ($isloggedin) {
     <?php
     
         require_once('navbar.php');
-?>
+?>  
+        <!-- początek container -->
+    <div class="container conteinerusersettings">
+        <!-- początek row -->
+        <div class="row">
+            <div id="zmiendaneformusersettings" class="col-12 col-sm-6 col-md-4 col-lg-3">
             <form action="user_settings.php?co=dane" method="POST">
+            <span class="opisformsettings">zmień dane:</span></br>
                 <input value="<?php  echo $nick; ?>" type="text" name='nick' placeholder="wpisz imie"><br />
                 <input value="<?php echo $imie;?>" type="text" name='imie' placeholder="wpisz imie"><br />
                 <input value="<?php echo $nazwisko; ?>" type="text" name='nazwisko' placeholder="wpisz nazwisko"><br/> 
                 <input value="<?php echo $data ; ?>" type="date" name="data_ur" placeholder="podaj datę urodzenia"><br/> 
                 <input value="<?php echo $adres; ?>" type="text" name="adres" placeholder="podaj adres"><br />
-
-                <input type='submit' name="Submit" value="zaktualizuj">
+                <input class="submitusersettings" type='submit' name="Submit" value="zaktualizuj">
             </form>
-       
-        
+            </div>
+            <div id="zmienemailformusersettings" class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <span class="opisformsettings">zmień email</span></br>
             <form method="POST" action="user_settings.php?co=email">
                 <input value="<?php
                  echo $email; 
                  ?>" type='email' name='email' placeholder="wpisz email"><br />
-                <input type="submit" name="submit1" value="zaktualizuj email">
+                <input class="submitusersettings" type="submit" name="submit1" value="zaktualizuj email">
             </form>
-        
+            </div>
+            <div id="zmienhasloformusersettings" class="col-12 col-sm-6 col-md-4 col-lg-3">
+            <span class="opisformsettings">zmień haslo</span></br>
             <form method="POST" action="user_settings.php?co=haslo">
                 <input value="" type='password' name='haslo_stare' placeholder="wpisz stare haslo"><br />
                 <input value="" type='password' name='haslo' placeholder="wpisz nowe haslo"><br />
                 <input value="" type='password' name='haslo2' placeholder="powtórz nowe haslo"><br />
-                <input type="submit" name="submit" value="zmien haslo">
+                <input class="submitusersettings" type="submit" name="submit" value="zmien haslo">
             </form>
-     
-        
+            </div>
+            <div id="usunkontoformusersettings" class="col-12 col-sm-6 col-md-4 col-lg-3">
             <form action="user_settings.php?co=usun" method="post">
-                <span>usun konto:</span></br>
+                <span class="opisformsettings">usuń konto:</span></br>
                 <!-- <span>potwierdz</span> -->
-                <input type="text" name="potwierdz" placeholder="potwierdź">
-                <input type="submit">
+                <input type="text" name="potwierdz" placeholder="potwierdź"><br />
+                <input class="submitusersettings" type="submit">
             </form>
-        
- 
+            </div>
+
+        <!-- koniec row -->
+        </div>
+        <!-- koniec container -->
+    </div>
 
 
 

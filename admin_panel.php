@@ -193,7 +193,7 @@ foreach ($buforobj as $key => $value) {
     }
     ?>
 </div>
-<div class="divsumacenadminwybrane">suma wartości wszystkich zamowien <?php echo $suma;?></div>
+<div class="divsumacenadminwybrane">suma wartości wszystkich zamowien <?php echo $suma;?>zł</div>
 </div>
 
 

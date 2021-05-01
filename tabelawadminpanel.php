@@ -164,7 +164,7 @@ $sumazmienna=0
    
   </tbody>
 </table>
-<div class="divsumacenadminwybrane">suma wartości zamówień spełniających podane kryteria : <?php echo $sumazmienna;?></div>
+<div class="divsumacenadminwybrane">suma wartości zamówień spełniających podane kryteria : <?php echo $sumazmienna;?>zł</div>
 
 <?php
  if(count($objtab) == 0){
