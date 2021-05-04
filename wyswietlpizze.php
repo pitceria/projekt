@@ -126,7 +126,7 @@ foreach ($bufor as $key => $value) {
   <span>
   <?php
  
-  echo $value['idpizza']."<br/>";  
+//   echo $value['idpizza']."<br/>";  
    echo $value['nazwa']."<br/>";  
   $tmp = dejson($value['skladniki_json']);
    foreach ($tmp as  $val) {

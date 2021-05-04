@@ -2,15 +2,16 @@
 session_start();
 require_once('baza_danych.php');
 
-if(isset($_SESSION['error'])){
-  echo $_SESSION['error'];
-  unset($_SESSION['error']);
-}elseif(isset($_SESSION['messege'])){
-  echo $_SESSION['messege'];
-  unset($_SESSION['messege']);
-}
+// if(isset($_SESSION['error'])){
+//   echo $_SESSION['error'];
+//   unset($_SESSION['error']);
+// }elseif(isset($_SESSION['messege'])){
+//   echo $_SESSION['messege'];
+//   unset($_SESSION['messege']);
+// }
 // var_dump($_SESSION);
-
+require_once("maxid.php");
+    showerrorormessege();
 
 
 if(isset($_GET['cel'])){
@@ -37,15 +38,27 @@ if(isset($_GET['cel'])){
     $_SESSION['verifikey'] = $verifikey;
     $_SESSION['cel'] ="zmianahasla2";
     //nietestowane
-    require_once("maxid.php");
-    showerrorormessege();
-    ?>
     
+    
+    ?>
+    <head> <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css.css">
+   
+    </head>
+    <body>
+      
+        <div class="divyprzyrejestracji divyprzyrejestracjiwysrodkuj col-12    ">
    <form action="weryfikacja.php" method="POST">
     <input type="password" name="haslo" placeholder="nowe haslo">
     <input type="password" name="haslo2" placeholder="powtorz nowe haslo">
     <input type="submit" value="zmien">
     </form>
+   </div>   
+
+
+  
+  
     <?php
 
 
@@ -54,6 +67,9 @@ if(isset($_GET['cel'])){
 }
 
   elseif($_SESSION['cel'] == "zmianahasla2"){
+    ?>
+
+    <?php
     
     var_dump($_POST);
     $haslo = $_POST['haslo'];
@@ -67,7 +83,24 @@ if(isset($_GET['cel'])){
     $_SESSION['messege'] = "wszystko jest dobrze twoje haslo zostanie zmienione ";
     header('location:index.php');
     exit();
+?>
+<script>
+	let tmperrorbox = document.querySelector(".errorbox")
+	let tmpmessegebox = document.querySelector(".messegebox")
+	setTimeout(() => {
+		try{
+			tmperrorbox.remove();
+			tmpmessegebox.remove();
+		}
+		catch{
+			// console.log("xderror");
+		}
+	}, 5000);
 
+</script>
+
+  </body>
+<?php
 
   }
 

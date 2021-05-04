@@ -3,6 +3,20 @@ require_once("klasy.php");
 session_start();
 // var_dump($_SESSION);
 require_once("baza_danych.php");
+if (isset($_SESSION['isloggedin'])) {
+    if($_SESSION['isloggedin']==true){
+
+    }
+    else{
+        $_SESSION['error'] = "nie jesteś zalogowany prosimy sie zalogować";
+    header('location:index.php');
+    exit();
+    }
+} else {
+    $_SESSION['error'] = "nie jesteś zalogowany prosimy sie zalogować";
+    header('location:index.php');
+    exit();
+}
 $tmp = $_SESSION['iduzytkownicy'];
 $sqluser_settings = "SELECT iduzytkownicy,nick,imie,email,nazwisko,data_urodzenia,adres,is_verified,verification_key from uzytkownicy where iduzytkownicy = $tmp";
 $user_dane = $conn->query($sqluser_settings)->fetch_assoc();
@@ -41,11 +55,11 @@ if (isset($_GET['co'])) {
         $nick = $_POST['nick'];
         $imie = $_POST['imie'];
         $nazwisko = $_POST['nazwisko'];
-        $data_ur = $_POST['data_ur'];
+        $data = $_POST['data_ur'];
         $adres = $_POST['adres'];
          sprawdz_zmiany('dane', 'user_settings.php');
-        $sql_update = "UPDATE uzytkownicy set nick = " . "'" . $nick . "'" . ",imie =" . "'" . $imie . "'" . ",nazwisko=" . "'" . $nazwisko . "'" . ",data_urodzenia=" . "'" . $data_ur . "'" . ",adres =" . "'" . $adres . "'" . " where iduzytkownicy = $iduzytkownika";
-        
+        $sql_update = "UPDATE uzytkownicy set nick = " . "'" . $nick . "'" . ",imie =" . "'" . $imie . "'" . ",nazwisko=" . "'" . $nazwisko . "'" . ",data_urodzenia=" . "'" . $data . "'" . ",adres =" . "'" . $adres . "'" . " where iduzytkownicy = $iduzytkownika";
+        header('location:user_settings.php');
 
     } 
     elseif ($tmpco == 'email') {
@@ -156,12 +170,7 @@ if (isset($_GET['co'])) {
     header('location:user_settings.php');
 }
 
-if ($isloggedin) {
-} else {
-    $_SESSION['error'] = "nie jesteś zalogowany prosimy sie zalogować";
-    header('location:index.php');
-    exit();
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -245,6 +254,8 @@ if ($isloggedin) {
         </div>
         <!-- koniec container -->
     </div>
+    <?php require_once("stopka.php")?>
+
 
 
 

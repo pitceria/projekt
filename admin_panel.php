@@ -58,34 +58,35 @@ elseif($_SESSION['isadmin']!=true){
 require_once('navbar.php');
 ?>
 <!-- navbar -->
-<div class="container">
+<div class="container-fluid">
 <div class="row">
-<div id="warunkitabeli">
-<div class="col-12 col-sm-6">
+<!-- <div id="warunkitabeli"> -->
+<div class="warunki col-12 " >
   <label><input type="text" id="szukaj"placeholder="nazwy oddzielane przecinkami "></label>
 </div>
-<div class="col-12 col-sm-6">
+<div class="warunki col-12 col-sm-2">
   <!-- <label><input type="checkbox" id="chckbx1" onchange="zapytanie();cenachangestate()" checked="checked">cena</label> -->
   <label><input type="checkbox" id="chckbx1" onchange="zapytanie();cenachangestate()" >cena</label>
 </div>
-<div class="col-12 col-sm-6">
+<div class="warunki col-12 col-sm-4">
   <div id="range" ></div>
   <label id="lower-value">100 zł</label>
   <label id="myslnik-value">-</label>
   <label id="upper-value">300 zł</label>
 </div>
-<div class="col-12 col-sm-6">
+<div class="warunki col-12 col-sm-3">
 <select name="rozmiar" id="stanset" onchange="zapytanie()">
 <?php
-$mozliwe =["wszystkie","zamowione(0)","wykonane(1)"] ;
+$mozliwe =["wszystkie stany ","zamowione(0)","wykonane(1)"] ;
 foreach ($mozliwe as $key => $value) {
   echo"<option>".$value."</option>";
 }
 
 ?>
-</select>
+</select></div>
+<div class="warunki col-12 col-sm-3">
 <select id="czasset"  onchange="zapytanie()">
-<option>wszystkie</option>
+<option>wszystkie czasy</option>
 <?php
 $mozliweprzedzialy =["dzis","miesiac","miesiac-kalendarz","rok","rok-kalendarz"] ;
 foreach ($mozliweprzedzialy as $key => $value) {
@@ -93,7 +94,7 @@ foreach ($mozliweprzedzialy as $key => $value) {
 }
 ?>
 </select>
-</div>
+<!-- </div> -->
 </div>
 </div></div>
 
@@ -187,6 +188,7 @@ foreach ($buforobj as $key => $value) {
    
   </tbody>
 </table>
+
 <?php
  if(count($objtab) == 0){
       echo "tu miały być zamówienia ale za mało zainwestowaliście w marketing i nic tu nie ma :(";
@@ -195,7 +197,7 @@ foreach ($buforobj as $key => $value) {
 </div>
 <div class="divsumacenadminwybrane">suma wartości wszystkich zamowien <?php echo $suma;?>zł</div>
 </div>
-
+<?php require_once("stopka.php")?>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

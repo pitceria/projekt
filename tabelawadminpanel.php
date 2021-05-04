@@ -66,6 +66,7 @@ $sumazmienna=0
          if($sprawdz!="" && strpos($wartoscatr,$sprawdz)!==false ){
           $czyjest++;
          }
+      
        }
       }
       $warunki[] =$czyjest;

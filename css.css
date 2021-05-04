@@ -37,6 +37,39 @@ input[type=email]{
 #mainmenu{
     text-align: center;
 }
+.warunki{
+    height: 50px;
+    text-align: center;
+}
+#search,#szukaj{
+    width: 300px;
+}
+#stopka{
+    min-height: 50px;
+    width: 100%;
+    text-align: center;
+    width: 100%;
+    background-color: rgb(34, 34, 34);
+    /* border-radius:0 ; */
+    align-items: center;
+    margin-top:15px ;
+}
+#stopkarodzic{
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+#stopka a{
+    color: rgb(107, 105, 105);
+    text-decoration: none;
+    
+
+}
+#divyprzyrejestracjiwysrodkuj{
+margin: 0 auto;
+}
+ 
+
 /* button{
     background-color: #42a2f0;
 } */
@@ -57,10 +90,13 @@ a{
     overflow: auto;
 }
 .pizza_container{
-    /* background-color: rgb(54, 143, 42); */
-    padding:3px;
-    /* border: 1px solid black; */
-    /* margin: 2px; */
+
+    background-clip: content-box;
+    background-color: #3f414b;
+    padding:5px;
+    text-align: center;
+
+  
 }
 
 .pizza_container img {
@@ -72,6 +108,7 @@ a{
     background-color: rgba(75, 224, 187, 0.72);
     border-radius: 15px;
     text-align: center;
+    margin-top: 5px;
 }
 .divyprzyrejestracji input{
     width: 100%;
@@ -168,7 +205,7 @@ a{
     line-height: 40px;
     text-align: center;
     font-size: large;
-    background-color: rgb(30, 220, 169);
+    background-color: rgb(16, 106, 126);
     border-radius: 5px;
     /* height: 50px; */
     color: white;
@@ -220,9 +257,11 @@ user-select: none; /* Standard */
     top:55px;
     right: 10px;
     z-index:102;
-    font-size: x-large;
+    font-size: 40px;
+    color: red;
+    border: none;
     /* background-color: red; */
-    color: black;
+    /* color: black; */
     /* width:100%;
     height: 100%; */
     
@@ -268,7 +307,7 @@ button:disabled{
     background-color: #004ddd;
 }
 #nowezam{
-    background-color: #00ffc8;
+    background-color: rgb(16, 106, 126);
 }
 #usunzamowieniebtn{
     float: right;
@@ -336,8 +375,10 @@ select{
     border: none;
     border-radius: 10px;
     height: 35px;
+    min-width: 150px;
 }
 select option{
     background-color: #464444;
 
 }
+

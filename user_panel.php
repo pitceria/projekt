@@ -89,29 +89,30 @@ $bufor =$conn->query($sql_pizza);
 </div><!-- container -->
 
 
-<div class="container">
+<div class="container-fluid">
 <div class="row">
-<div id="warunkipizzy">
-<div class="col-12 col-sm-6">
+
+<!-- <div id="warunkipizzy"> -->
+<div class="warunki col-12 col-sm-6 col-md-6">
   <label><input type="text" id="search"placeholder="nazwy oddzielane przecinkami "></label>
 </div>
-<div class="col-12 col-sm-6">
+<div class="warunki col-12 col-sm-6 col-md-3">
   <label><input type="checkbox" id="chck1" onchange="query()" checked="checked">lista składnikow<label>
 </div>
-<div class="col-12 col-sm-6">
+<div class="warunki col-12 col-sm-6 col-md-3">
   <label><input type="checkbox" id="chck2"onchange="query()" checked="checked">rozmiar</label>
 </div>
-<div class="col-12 col-sm-6">
+<div class="warunki col-12 col-sm-6 col-md-6">
   <label><input type="checkbox" id="chck3" onchange="query();cenachangestate()" checked="checked">cena</label>
 </div>
-<div class="col-12 col-sm-6">
+<div class="warunki col-12 col-sm-6 col-md-3">
   <div id="range" ></div>
   <label id="lower-value">10 zł</label>
   <label id="myslnik-value">-</label>
   <label id="upper-value">30 zł</label>
 
 </div>
-<div class="col-12 col-sm-6">
+<div class="warunki col-12 col-sm-6 col-md-3">
 <select name="rozmiar" id="rozmiarset" onchange="query()">
 <?php
 $rozmiary =["wszystkie rozmiary","xs","s","m","l","xl","xxl"] ;
@@ -122,7 +123,7 @@ foreach ($rozmiary as $key => $value) {
 </select>
 
 
-</div>
+<!-- </div> -->
 </div>
 
 
@@ -231,6 +232,6 @@ range.noUiSlider.on('set', function (values, handle, unencoded, isTap, positions
 
 </script>
 
-
+<?php require_once("stopka.php")?>
 </body>
 </html>
