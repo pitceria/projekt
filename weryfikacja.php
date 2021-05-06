@@ -12,22 +12,32 @@ require_once('baza_danych.php');
 // var_dump($_SESSION);
 require_once("maxid.php");
     showerrorormessege();
-
+require_once("klasy.php");
 
 if(isset($_GET['cel'])){
   if($_GET['cel']=="mail"){
-    var_dump($_SESSION);
-    if(isset($_SESSION['nowy_mail'])){
-    $sql_zmiana_maila = "UPDATE uzytkownicy set email='{$_SESSION['nowy_mail']}' where verification_key ='".$_GET['vkey']."'";
-    $conn->query($sql_zmiana_maila);
-    $_SESSION['messege'] = "twoj adres email zostal zmieniony pomyslnie";
-    var_dump($sql_zmiana_maila); 
-    header('location:user_panel.php');
-    exit();
-    }
+    // var_dump($_SESSION);
+    // if(isset($_SESSION['nowy_mail'])){
+    // $sql_zmiana_maila = "UPDATE uzytkownicy set email='{$_SESSION['nowy_mail']}' where verification_key ='".$_GET['vkey']."'";
+    // $conn->query($sql_zmiana_maila);
+    // $_SESSION['messege'] = "twoj adres email zostal zmieniony pomyslnie";
+    // var_dump($sql_zmiana_maila); 
+    // header('location:user_panel.php');
+    // exit();
+    // }
+    if(isset($_GET['nowymail'])){
+      $sql_zmiana_maila = "UPDATE uzytkownicy set email='{$_GET['nowymail']}' where verification_key ='".$_GET['vkey']."'";
+      $conn->query($sql_zmiana_maila);
+      $_SESSION['messege'] = "twoj adres email zostal zmieniony pomyslnie";
+      var_dump($sql_zmiana_maila); 
+      header('location:user_settings.php');
+      exit();
+      }
     else{
-      $_SESSION['error']= "nowy mail nie może byc ustawiony poniewaz sesja wygasla prosimy powtorzyc operacje w tej samej przegladarce w trakcie trwania sesji  ";
-
+      // $_SESSION['error']= "nowy mail nie może byc ustawiony poniewaz sesja wygasla prosimy powtorzyc operacje w tej samej przegladarce w trakcie trwania sesji  ";
+      $_SESSION['error']= "coś sie ewidentie zepsuło ";
+      header('location:user_settings.php');
+      exit();
 
     }
 
@@ -71,7 +81,7 @@ if(isset($_GET['cel'])){
 
     <?php
     
-    var_dump($_POST);
+    // var_dump($_POST);
     $haslo = $_POST['haslo'];
     $haslo2 = $_POST['haslo2'];
   

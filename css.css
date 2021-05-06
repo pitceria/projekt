@@ -183,18 +183,17 @@ a{
     align-items: center; */
 }
 .zawartosc{
-    background-color: rgb(21, 202, 109);
+    background-color: #080E2C;
     margin:5px auto;
     width: 100%;
     display: none;
 }
 #paneldointerakcjiadmin .zawartosc{
-    background-color:rgb(21, 202, 109);
+    background-color: #080E2C;
     margin:5px auto;
     width: 100%;
     display: block;
-    
-    
+    /* display: none; */
 }
 #paneldointerakcjiadmin{
     overflow: auto;

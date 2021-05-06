@@ -2,6 +2,7 @@
 
 session_start();
 require_once('baza_danych.php');
+require_once("klasy.php");
 @$email = $_POST['email'];
 @$haslo = md5($_POST['haslo']);
 @$sql="select iduzytkownicy,nick,imie,nazwisko,adres,is_admin,data_urodzenia,is_verified,is_active,email,haslo,count(iduzytkownicy) as count,verification_key from uzytkownicy where email like '".$email."'";

@@ -22,6 +22,6 @@ $danezamowienie->get_content();
 <div id="adresdostawyzamowieniawadminpanelu"> adres dostawy : <?php  $danezamowienie->getuserdane(); echo $danezamowienie->user_dane[4] ?></div>
 <?php
 $danezamowienie->wypiszzawartosc('zawartoscbylychzamowien');
-
+// echo"xd";
 
 ?>

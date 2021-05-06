@@ -212,8 +212,9 @@ class zawartosc{
         <?php
         }
         elseif($jakoco == "zawartoscbylychzamowien"){
-            
+            // echo"xd2";
             ?>
+           
             <div class ='zawartosc x-<?php echo $this->idzamowienia;?> clearfix  '><div>
             <img class="rounded float-left" src ="assety\zdjecia_pizzy/<?php echo $this->sciezka_zdjecie; ?>">
             <p class='text-muted'> <?php echo $this->nazwa.'('.join($this->skladniki_json,",").') ile: '.$this->ilosc.' ,'.$this->ilosc*$this->cena.'zł ('.$this->cena.') dodatkowe informacje : '.$this->dodatkowe_informacje .' ('.$this->rozmiar.') '?></p>

@@ -30,7 +30,7 @@ require_once("maxid.php");
 //     unset($_SESSION['messege']);
 // }
 
-// showerrorormessege();
+showerrorormessege();
 
 
 $iduzytkownika = $user_dane['iduzytkownicy'];
@@ -79,14 +79,16 @@ if (isset($_GET['co'])) {
             $kod = $verificode;
 
             $_SESSION['nowy_mail'] = $email_zmiana_nowy;
-            $link = "<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=" . $verificode . "&cel=mail'>link do zmiany maila </a>";
+            // $link = "<a href='http://localhost/projekt%20programowanie%20i%20administracja%20pitcernia/projekt2/weryfikacja.php?vkey=" .$verificode. "&cel=mail&nowymail=".$email_zmiana_nowy."'>link do zmiany maila </a>";
+            $link = "<a href='http://pitcernia.opole.pl/weryfikacja.php?vkey=" .$verificode. "&cel=mail&nowymail=".$email_zmiana_nowy."'>link do zmiany maila </a>";
             sendmail($email_zmiana_nowy, $link);
             $_SESSION['messege'] ="wiadomość z potwierdzeniem została wysłana";
         } else {
             $_SESSION['error'] = "taki adres email jest już zapisany w naszej bazie danych nie możesz zmienić aktualnego na ten  ";
-            header('location:user_settings.php');
-            exit();
+            
         }
+        header('location:user_settings.php');
+            exit();
      
         unset($sql_update);
     }
@@ -261,6 +263,26 @@ if (isset($_GET['co'])) {
 
 
             <script src="userpaneljs.js"></script>
+<!-- <script>
+	let tmperrorbox = document.querySelector(".errorbox")
+	let tmpmessegebox = document.querySelector(".messegebox")
+	setTimeout(() => {
+		try{
+      try{
+        tmperrorbox.remove();
+      }
+      catch{
+        tmpmessegebox.remove();
+      }
+			
+			
+		}
+		catch(xd){
+			console.log(xd);
+		}
+	}, 5000);
+
+</script> -->
 </body>
 
 </html>
