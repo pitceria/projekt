@@ -58,7 +58,7 @@ if(isset($_GET['cel'])){
     </head>
     <body>
       
-        <div class="divyprzyrejestracji divyprzyrejestracjiwysrodkuj col-12    ">
+        <div class="divyprzyrejestracji divyprzyrejestracjiwysrodkuj col-12 col-sm-8 col-md-6   offset-sm-2 offset-md-3   ">
    <form action="weryfikacja.php" method="POST">
     <input type="password" name="haslo" placeholder="nowe haslo">
     <input type="password" name="haslo2" placeholder="powtorz nowe haslo">

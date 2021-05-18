@@ -3,6 +3,7 @@ require_once("klasy.php");
 session_start();
 // var_dump($_SESSION);
 require_once("baza_danych.php");
+unset($_SESSION['nowy_mail']);
 if (isset($_SESSION['isloggedin'])) {
     if($_SESSION['isloggedin']==true){
 

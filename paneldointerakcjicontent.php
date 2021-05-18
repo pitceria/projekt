@@ -35,7 +35,7 @@
   <!-- koniec serwer -->
         <span>
         <?php
-         
+        //  var_dump($value);
        
          echo $value['nazwa']."(";           
         $tmp = dejson($value['skladniki_json']);
@@ -44,6 +44,7 @@
          }
          echo ") <br/>rozmiar : ".$value['rozmiar']."<br/>"; 
           echo $value['opis']."<br/>";
+          echo  $value["cena"]."zł / szt. "."<br/>";
         ?>
         </span>
        <label >ilość<input type="number" value="1" min="1" id="ilosc"/></label>

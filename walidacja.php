@@ -134,8 +134,8 @@ function sprawdz_zmiany($co_sprawdzic, $gdzie_odeslac)
             foreach ($checks as $key => $value) {
                 if ($key) {
                     $_SESSION['error'] = $value;
-                    header('location:' . $gdzie_odeslac);
-                    exit();
+                    // header('location:' . $gdzie_odeslac);
+                    // exit();
                 } else {
                     continue;
                 }
@@ -204,13 +204,13 @@ function ispasswordok($password, $gdzie_odeslac)
     $upcase = '/[A-Z]/';
     $nums =  '/[0-9]/';
     // $lenght = '/[a-zA-Z0-9ZAQ!2wsxZAQ!2wsx]{8,25}/';
-    $lenght = '/[a-zA-Z0-9!@#$%^&*]{8,25}/';
+    $lenght = '/[a-zA-Z0-9!@#$%^&*\[(=-_)]{8,25}/';
     $bledy = [
         $specchar => "w twoim haśle nie ma znaku specjalnego ",
         $case => "w twoim haśle brakuje małej litery ",
         $nums => "w twoim haśle brakuje liczby",
         $upcase => "w twoim haśle brakuje dużej litery ",
-        $lenght => "twoje hasło nie mieści się w odpowiedniej długości (8,25)",
+        $lenght => "twoje hasło nie mieści się w odpowiedniej długości (8,25) albo użyłeś znaków niedozwolonych ",
     ];
     foreach ($bledy as $key => $value) {
         if (preg_match($key, $password)) {
